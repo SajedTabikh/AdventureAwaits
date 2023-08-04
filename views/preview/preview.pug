@@ -1,0 +1,140 @@
+extends bases 
+block content
+
+  section#About.section-about
+    .u-center-text.u-margin-bottom-big
+      h2.heading-secondary
+        | Exciting tours for adventurous people
+    .row
+      .col-1-of-2
+        h3.heading-tertiary.u-margin-bottom-small You're going to fall in love with nature
+        p.paragraph
+          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur libero repellat quis consequatur
+          | ducimus quam nisi exercitationem omnis earum qui.
+        h3.heading-tertiary.u-margin-bottom-small Live adventures like you never have before
+        p.paragraph
+          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores nulla deserunt voluptatum nam.
+        a.btn-text(href="#") Learn more → 
+      .col-1-of-2
+        .composition
+          img(srcset="/img/nat-1.jpg 300w, /img/nat-1-large.jpg 1000w", sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px", alt="Photo 1", class="composition__photo composition__photo--p1", src="/img/nat-1-large.jpg")
+          img(srcset="/img/nat-2.jpg 300w, /img/nat-2-large.jpg 1000w", sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px", alt="Photo 2", class="composition__photo composition__photo--p2", src="/img/nat-2-large.jpg")
+          img(srcset="/img/nat-3.jpg 300w, /img/nat-3-large.jpg 1000w", sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px", alt="Photo 3", class="composition__photo composition__photo--p3", src="/img/nat-3-large.jpg")
+        
+          
+  section.section-features
+    .row
+      .col-1-of-4
+        .feature-box
+          i(class="feature-box__icon icon-basic-world")
+          h3.heading-tertiary.u-margin-bottom-small Explore the world
+          p(class="feature-box__text")
+            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
+      .col-1-of-4
+        .feature-box
+          i(class="feature-box__icon icon-basic-compass")
+          h3.heading-tertiary.u-margin-bottom-small Meet nature
+          p(class="feature-box__text")
+            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
+      .col-1-of-4
+        .feature-box
+          i(class="feature-box__icon icon-basic-map")
+          h3.heading-tertiary.u-margin-bottom-small Find your way
+          p(class="feature-box__text")
+            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
+      .col-1-of-4
+        .feature-box
+          i(class="feature-box__icon icon-basic-heart")
+          h3.heading-tertiary.u-margin-bottom-small Live a healthier life
+          p(class="feature-box__text")
+            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
+  section#section-tours.section-tours
+    .u-center-text.u-margin-bottom-big
+      h2.heading-secondary
+        | Most popular tours
+    main.main
+      .card-container
+        each tour in tours
+          .card
+            .card__header
+              .card__picture
+                .card__picture-overlay &nbsp;
+                img.card__picture-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
+              h3.heading-tertirary
+                span= tour.name
+
+            .card__details
+              h4.card__sub-heading= `${tour.difficulty} ${tour.duration}-day tour`
+              p.card__text= tour.summary
+              .card__data
+                svg.card__icon
+                  use(xlink:href='/img/icons.svg#icon-map-pin')
+                span(class="cardTours")= tour.startLocation.description
+              .card__data
+                svg.card__icon
+                  use(xlink:href='/img/icons.svg#icon-calendar')
+                span(class="cardTours")= tour.startDates[0].toLocaleString('en-us', {month: 'long', year: 'numeric'})
+              .card__data
+                svg.card__icon
+                  use(xlink:href='/img/icons.svg#icon-flag')
+                span(class="cardTours")= `${tour.locations.length} stops`
+              .card__data
+                svg.card__icon
+                  use(xlink:href='/img/icons.svg#icon-user')
+                span(class="cardTours")= `${tour.maxGroupSize} people`
+
+            .card__footer
+              p
+                span.card__footer-value(class="cardTours")= `${tour.price}$`
+                | 
+                span.card__footer-text per person
+              p.card__ratings
+                span.card__footer-value(class="cardTours")= tour.ratingsAverage
+                | 
+                span.card__footer-text= `rating (${tour.ratingsQuantity})`
+              a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details
+        
+    .u-center-text.u-margin-top-huge
+      a.btn.btn--green(href="/All-Tours") Discover all tours
+  section.section-stories
+    .bg-video
+      video(class="bg-video__content", autoplay, muted, loop)
+        source(src="/img/videos.mp4", type="video/mp4")
+        source(src="/img/videos.mp4", type="video/mp4")
+        | Your browser is not supported!
+    .u-center-text.u-margin-bottom-big
+      h2(class= "heading-secondary-stories")
+        | We make people genuinely happy
+    .row
+      .story
+        figure(class="story__shape")
+          img(src="/img/nat-8.jpg", alt="Person on a tour", class="story__img")
+          figcaption(class="story__caption") Mary Smith
+        div(class="story__text")
+          h3.heading-tertiary.u-margin-bottom-small(class= "stories") I had the best week ever with my family
+          p(class= "stories")
+            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur libero repellat quis consequatur
+            | ducimus quam nisi exercitationem omnis earum qui. Aperiam, ipsum sapiente aspernatur libero
+            | repellat quis consequatur ducimus quam nisi exercitationem omnis earum qui.
+    .row
+      .story
+        figure(class="story__shape")
+          img(src="/img/nat-9.jpg", alt="Person on a tour", class="story__img")
+          figcaption(class="story__caption") Jack Wilson
+        div(class="story__text")
+          h3.heading-tertiary.u-margin-bottom-small(class= "stories") WOW! My life is completely different now
+          p(class= "stories")
+            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur libero repellat quis consequatur
+            | ducimus quam nisi exercitationem omnis earum qui. Aperiam, ipsum sapiente aspernatur libero
+            | repellat quis consequatur ducimus quam nisi exercitationem omnis earum qui.
+  section.section-book
+    .row
+      .book
+        div(class="book__form")
+          form.form(action="#")
+            .u-margin-bottom-medium
+              h2(class="foooter")
+                |Ready to begin your adventure? Sign up now and embrace the wonders that await!
+            div(class="form__group")
+              a(href="/signup", class="btnn btn--green") Create an account!!!
+              
