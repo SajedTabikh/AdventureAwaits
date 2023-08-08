@@ -40,13 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (formElement) {
     formElement.addEventListener('submit', (e) => {
       e.preventDefault();
-      document.querySelector('.btn.btn--green').textContent = 'Create New Account';
+      document.querySelector('.btnn-primary').textContent = 'Create Account';
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       const passwordConfirm = document.getElementById('passwordConfirm').value;
-      document.querySelector('.btn.btn--green').textContent = 'Creating...';
-      document.querySelector('.btn.btn--green').textContent = 'Done';
+      document.querySelector('.btnn-primary').textContent = 'Creating...';
+      document.querySelector('.btnn-primary').textContent = 'Create Account';
 
       signup(name, email, password, passwordConfirm);
     });

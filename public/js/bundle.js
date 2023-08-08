@@ -12020,7 +12020,8 @@ var login = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: 'POST',
-            url: '/api/v1/users/login',
+            url: '/api/v1/users/login ',
+            // url: 'http://127.0.0.1:3000/login',
             data: {
               email: email,
               password: password
@@ -12029,18 +12030,20 @@ var login = /*#__PURE__*/function () {
         case 3:
           res = _context.sent;
           if (res.data.status === 'success') {
+            console.log(res.data.status);
             (0, _alerts.showAlert)('success', 'Logged in Successfully');
             window.setTimeout(function () {
               location.assign('/All-Tours');
             }, 1500);
           }
-          _context.next = 10;
+          _context.next = 11;
           break;
         case 7:
           _context.prev = 7;
           _context.t0 = _context["catch"](0);
+          console.log(_context.t0);
           (0, _alerts.showAlert)('error', _context.t0.response.data.message);
-        case 10:
+        case 11:
         case "end":
           return _context.stop();
       }
@@ -12509,13 +12512,13 @@ document.addEventListener('DOMContentLoaded', function () {
   if (formElement) {
     formElement.addEventListener('submit', function (e) {
       e.preventDefault();
-      document.querySelector('.btn.btn--green').textContent = 'Create New Account';
+      document.querySelector('.btnn-primary').textContent = 'Create Account';
       var name = document.getElementById('name').value;
       var email = document.getElementById('email').value;
       var password = document.getElementById('password').value;
       var passwordConfirm = document.getElementById('passwordConfirm').value;
-      document.querySelector('.btn.btn--green').textContent = 'Creating...';
-      document.querySelector('.btn.btn--green').textContent = 'Done';
+      document.querySelector('.btnn-primary').textContent = 'Creating...';
+      document.querySelector('.btnn-primary').textContent = 'Create Account';
       (0, _signup.signup)(name, email, password, passwordConfirm);
     });
   }
@@ -12640,7 +12643,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1662" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "5778" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

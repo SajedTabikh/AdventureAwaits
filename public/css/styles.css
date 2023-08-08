@@ -131,7 +131,7 @@ body { background: var(--white); }
  * #REUSED STYLE
 \*-----------------------------------*/
 
-.container {padding-inline: 14px;}
+.container {padding-inline: 15px;}
 
 .btn {
   color: var(--white);
@@ -155,7 +155,7 @@ body { background: var(--white); }
 
 .btn-secondary { border-color: var(--white); }
 
-.btn-secondary:is(:hover, :focus) { background: hsla(0, 0%, 100%, 0.1); }
+.btn-secondary:is(:hover, :focus) {background: hsl(0deg 16.18% 10.57% / 10%);}
 
 .h1,
 .h2,
@@ -213,7 +213,7 @@ body { background: var(--white); }
   top: 0;
   left: 0;
   width: 100%;
-  padding-top: 61px;
+  padding-top: 60px;
   z-index: 4;
 }
 
@@ -224,7 +224,7 @@ body { background: var(--white); }
   width: 100%;
   transition: var(--transition);
   border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
-  padding-block: 15px;
+  padding-block: 4px;
   z-index: 1;
 }
 
@@ -721,7 +721,7 @@ body { background: var(--white); }
   bottom: -10px;
   left: 0;
   width: 50px;
-  height: 2px;
+  height: 3px;
   background: var(--bright-navy-blue);
 }
 
@@ -758,7 +758,7 @@ address {
 .footer-form .input-field {
   background: var(--white);
   font-size: var(--fs-5);
-  padding: 17px 23px;
+  padding: 16px 4px;
   border-radius: 100px;
   margin-bottom: 0px;
 }
@@ -880,7 +880,7 @@ address {
     text-align: center;
   }
 
-  .section-text { margin-bottom: 40px; }
+  .section-text {margin-bottom: 42px;}
 
   .card-text { --fs-5: 15px; }
 
@@ -990,11 +990,7 @@ address {
 
     /**
      * typography
-     */
-
-    --fs-5: 15px;
-
-  }
+     *//* --fs-5: 15px; */}
 
 
 
@@ -1053,7 +1049,7 @@ address {
    * PACKAGE
    */
 
-  .package-list { margin-bottom: 50px; }
+  .package-list {margin-bottom: 48px;}
 
   .package-list > li:not(:last-child) { margin-bottom: 40px; }
 
@@ -1283,9 +1279,7 @@ address {
 
     /**
      * spacing
-     */
-
-    --section-padding: 90px;}
+     *//* --section-padding: 90px; */}
 
 
 
@@ -1296,3 +1290,63 @@ address {
   .container { max-width: 1180px; }
 
 }
+
+
+.alert {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 9999;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 350;
+  text-align: center;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 1rem 8rem; /* Adjusted padding */
+  -webkit-box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.25); /* Adjusted box shadow */
+}
+.alert--success {
+  background-color: #20bf6b;
+}
+.alert--error {
+  background-color: #eb4d4b;
+}
+
+/* In login.css */
+.input-field {
+  background-color: #fff; /* Set a desired background color */
+  color: #333; /* Set a desired text color */
+  border: 1px solid #ccc; /* Add a border for better visual separation */
+}
+
+/* In styles.css */
+.input-field {
+  background-color: #fff; /* Set a desired background color */
+  color: #333; /* Set a desired text color */
+  border: 1px solid #ccc; /* Add a border for better visual separation */
+}
+
+.user-profile {
+  width: 50px; /* Adjust the width and height as needed */
+  height: 50px;
+  border-radius: 50%; /* Makes the image circular */
+  overflow: hidden; /* Clips the image to the circular shape */
+  margin-right: 15px; /* Adjust spacing as needed */
+}
+
+.user-profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image fills the circular container */
+}
+
+.wrapperr {
+  display: flex;
+  text-align: center;
+}
+
+

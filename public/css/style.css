@@ -362,8 +362,8 @@ body {
 }
 
 .header {
-  background-color: #444;
-  padding: 21px 5rem;
+  background-color: #fff;
+  padding: 23px 8rem;
   height: 8rem;
   position: relative;
   z-index: 100;
@@ -400,7 +400,7 @@ body {
 /* Add media query for smaller screens (e.g., phones) */
 @media only screen and (max-width: 37.5em) {
   .header {
-    padding: 12px 2rem;
+    padding: 12px 0rem;
     height: auto;
     text-align: center;
   }
@@ -831,7 +831,7 @@ body {
 }
 
 .reviews {
-  padding: 5rem 0;
+  padding: 0rem 0;
   display: grid;
   grid-column-gap: 6rem;
   grid-auto-flow: column;
@@ -1098,8 +1098,8 @@ body {
   }
 }
 
-.footer {
-  background-color: #444;
+/* .footer {
+  background-color: #fff;
   padding: 6rem 4rem 3rem 4rem;
   font-size: 1.4rem;
   display: grid;
@@ -1108,7 +1108,7 @@ body {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-}
+} */
 @media only screen and (max-width: 50em) {
   .footer {
     grid-template-columns: 1fr;
