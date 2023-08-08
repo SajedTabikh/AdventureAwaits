@@ -1,0 +1,234 @@
+/* login-style.css */
+
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body styles */
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f8f8f8;
+  }
+  
+  /* Login Form styles */
+  .login-form-container {
+    max-width: 400px;
+    margin: 3rem auto;
+    padding: 3rem;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-form-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .login-form-text {
+    color: #e7e7e7;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .login-form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .login-form-label {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .login-form-input {
+    width: 100%;
+    padding: 3rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 3rems;
+  }
+  
+  .login-form-btn {
+    background-color: #333;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+  
+  .login-form-btn:hover {
+    background-color: #555;
+  }
+  
+  /* Footer styles */
+  .footer {
+    background-color: #333;
+    color: #fff;
+    padding: 0rem 0;
+    text-align: center;
+  }
+  
+  .footer-top {
+    background-color: #444;
+    padding: 1rem 0;
+  }
+  
+  .footer-brand .logo img {
+    width: 100px;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-text {
+    color: #ddd;
+  }
+  
+  .footer-contact {
+    margin-bottom: 1rem;
+  }
+  
+  .contact-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .contact-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-form {
+    margin-bottom: 1rem;
+  }
+  
+  .form-text {
+    color: #ddd;
+    margin-bottom: 1rem;
+  }
+  
+  .form-wrapper {
+    display: flex;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0px 0 0 4px;
+  }
+  
+  .btn-primary {
+    background-color: #444;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: #555;
+  }
+  
+  /* Go to Top Button styles */
+  .go-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #333;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .go-top ion-icon {
+    vertical-align: middle;
+  }
+  
+  .btnn {
+    margin: 1.1rem 0rem;
+    color: var(--white);
+    text-transform: uppercase;
+    font-size: var(--fs-5);
+    border-radius: 100px;
+    padding: var(--padding, 8px 18px);
+    border: var(--border-width, 2px) solid transparent;
+    transition: var(--transition);
+  }
+
+  .btnn-primary {
+    background: var(--bright-navy-blue);
+    border-color: var(--bright-navy-blue);
+  }
+  
+  .btnn-primary:is(:hover, :focus) {
+    background: var(--yale-blue);
+    border-color: var(--yale-blue);
+  }
+
+  a,
+img,
+span,
+input,
+label,
+buttonn,
+ion-icon { display: block; }
+
+input,
+buttonn {
+  background: none;
+  border: none;
+  font: inherit;
+}
+
+buttonn { cursor: pointer; }
+
+.heroo {
+    background-image: url("/images/hero-banner.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: hsla(0, 0%, 0%, 0.7);
+    background-blend-mode: overlay;
+    display: grid;
+    place-items: center;
+    min-height: 670px;
+    text-align: center;
+    padding-top: 117px;
+  }
+
+  .login-form-container {
+    max-width: 400px;
+    margin: 3rem auto;
+    padding: 3rem;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* ... (existing code) */
+  
+  .input-wrapper {
+    margin-bottom: 1.5rem; /* Add margin between input fields */
+  }

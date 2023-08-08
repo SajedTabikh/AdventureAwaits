@@ -1,0 +1,126 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Tour Packages
+        link(rel="stylesheet", href="/css/styles.css")
+        link(rel="shortcut icon", href="/images/favicon.svg", type="image/svg+xml")
+        link(rel="stylesheet", href="/css/styles.css")
+        link(rel="preconnect", href="https://fonts.googleapis.com")
+        script(type="module", src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js")
+        script(nomodule, src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js")
+        link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap", rel="stylesheet")
+    body
+        // HEADER
+        header.header(data-header)
+            .header-top
+                .container
+                    a.helpline-box(href="tel:+01123456790")
+                        .icon-box
+                            ion-icon(name="call-outline")
+                        .wrapper
+                            p.helpline-title For Further Inquires:
+                            p.helpline-number +01 (123) 4567 90
+                    a.logo(href="#")
+                        img(src="/images/logo-blue.svg", alt="Tourly logo")
+            .header-bottom
+                .container
+                    nav.navbar(data-navbar)
+                        .navbar-top
+                            a.logo(href="#")
+                                img(src="/images/logo-blue.svg", alt="Tourly logo")
+                            button.nav-close-btn(aria-label="Close Menu", data-nav-close-btn)
+                                ion-icon(name="close-outline")
+
+        // BODY
+        section.package#package
+            .container
+                p.section-subtitle Popular Packages
+                h2.h2.section-title Checkout Our Packages
+                p.section-text Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum.
+                    | Vestibulum cumque laudantium.
+                    | Sit ornare mollitia tenetur, aptent.
+                ul.package-list
+                    //- Replace the content with your package cards
+                    //- Example Package Card
+                    li
+                        .package-card
+                            figure.card-banner
+                                img(src="/images/packege-1.jpg", alt="Experience The Great Holiday On Beach", loading="lazy")
+                            .card-content
+                                h3.h3.card-title Experience The Great Holiday On Beach
+                                p.card-text Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo
+                                    | maiores, est aliquet porttitor! Eaque,
+                                    | cras, aspernatur.
+                                ul.card-meta-list
+                                    li.card-meta-item
+                                        .meta-box
+                                            ion-icon(name="time")
+                                            p.text 7D/6N
+                                    li.card-meta-item
+                                        .meta-box
+                                            ion-icon(name="people")
+                                            p.text pax: 10
+                                    li.card-meta-item
+                                        .meta-box
+                                            ion-icon(name="location")
+                                            p.text Malaysia
+                            .card-price
+                                .wrapper
+                                    p.reviews (25 reviews)
+                                    .card-rating
+                                        ion-icon(name="star")
+                                        ion-icon(name="star")
+                                        ion-icon(name="star")
+                                        ion-icon(name="star")
+                                        ion-icon(name="star")
+                                p.price $750
+                                    span / per person
+                                button.btn.btn-secondary Book Now
+
+        // FOOTER
+        footer.footer
+            .footer-top
+                .container
+                    .footer-brand
+                        a.logo(href="#")
+                            img(src="/images/logo.svg", alt="Tourly logo")
+                        p.footer-text Urna ratione ante harum provident, eleifend, vulputate molestiae proin
+                            | fringilla, praesentium magna conubia
+                            | at
+                            | perferendis, pretium, aenean aut ultrices.
+                    .footer-contact
+                        h4.contact-title Contact Us
+                        p.contact-text Feel free to contact and reach us !!
+                        ul
+                            li.contact-item
+                                ion-icon(name="call-outline")
+                                a.contact-link(href="tel:+01123456790") +01 (123) 4567 90
+                            li.contact-item
+                                ion-icon(name="mail-outline")
+                                a.contact-link(href="mailto:info.tourly.com") info.tourly.com
+                            li.contact-item
+                                ion-icon(name="location-outline")
+                                address 3146 Koontz, California
+                    .footer-form
+                        p.form-text Subscribe our newsletter for more update &amp; news !!
+                        form.form-wrapper
+                            input.input-field(type="email", name="email", placeholder="Enter Your Email", required)
+                            button.btn.btn-secondary(type="submit") Subscribe
+
+            .footer-bottom
+                .container
+                    p.copyright &copy; 2022
+                        a(href="#") codewithsadee. All rights reserved
+                    ul.footer-bottom-list
+                        li
+                            a.footer-bottom-link(href="#") Privacy Policy
+                        li
+                            a.footer-bottom-link(href="#") Term &amp; Condition
+                        li
+                            a.footer-bottom-link(href="#") FAQ
+
+        a.go-top(href="#top", data-go-top)
+            ion-icon(name="chevron-up-outline")

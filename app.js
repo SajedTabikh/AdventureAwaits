@@ -51,6 +51,7 @@ app.use(
         "'self'",
         'https://api.mapbox.com',
         'https://events.mapbox.com',
+        'https://unpkg.com', // Add this line to allow Ionicons script
         'ws://127.0.0.1:4760/',
         'ws://127.0.0.1:4174/',
         'ws://127.0.0.1:13829/',
@@ -68,12 +69,13 @@ app.use(
         'https://api.mapbox.com',
         'https://cdnjs.cloudflare.com',
         'https://js.stripe.com',
+        'https://unpkg.com', // Add this line to allow Ionicons script
         'https://kit.fontawesome.com', // Add this line for Font Awesome
         'https://events.mapbox.com',
       ],
       'worker-src': ["'self'", 'blob:'],
       'img-src': ["'self'", 'data:', 'blob:'],
-      'frame-src': ["'self'", 'https://js.stripe.com/'],
+      'frame-src': ["'self'", 'unsafe-inline', 'https://js.stripe.com/'],
     },
   })
 );

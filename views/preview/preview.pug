@@ -1,140 +1,500 @@
-extends bases 
-block content
+//- extends bases 
+//- block content
 
-  section#About.section-about
-    .u-center-text.u-margin-bottom-big
-      h2.heading-secondary
-        | Exciting tours for adventurous people
-    .row
-      .col-1-of-2
-        h3.heading-tertiary.u-margin-bottom-small You're going to fall in love with nature
-        p.paragraph
-          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur libero repellat quis consequatur
-          | ducimus quam nisi exercitationem omnis earum qui.
-        h3.heading-tertiary.u-margin-bottom-small Live adventures like you never have before
-        p.paragraph
-          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores nulla deserunt voluptatum nam.
-        a.btn-text(href="#") Learn more → 
-      .col-1-of-2
-        .composition
-          img(srcset="/img/nat-1.jpg 300w, /img/nat-1-large.jpg 1000w", sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px", alt="Photo 1", class="composition__photo composition__photo--p1", src="/img/nat-1-large.jpg")
-          img(srcset="/img/nat-2.jpg 300w, /img/nat-2-large.jpg 1000w", sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px", alt="Photo 2", class="composition__photo composition__photo--p2", src="/img/nat-2-large.jpg")
-          img(srcset="/img/nat-3.jpg 300w, /img/nat-3-large.jpg 1000w", sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px", alt="Photo 3", class="composition__photo composition__photo--p3", src="/img/nat-3-large.jpg")
-        
-          
-  section.section-features
-    .row
-      .col-1-of-4
-        .feature-box
-          i(class="feature-box__icon icon-basic-world")
-          h3.heading-tertiary.u-margin-bottom-small Explore the world
-          p(class="feature-box__text")
-            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
-      .col-1-of-4
-        .feature-box
-          i(class="feature-box__icon icon-basic-compass")
-          h3.heading-tertiary.u-margin-bottom-small Meet nature
-          p(class="feature-box__text")
-            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
-      .col-1-of-4
-        .feature-box
-          i(class="feature-box__icon icon-basic-map")
-          h3.heading-tertiary.u-margin-bottom-small Find your way
-          p(class="feature-box__text")
-            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
-      .col-1-of-4
-        .feature-box
-          i(class="feature-box__icon icon-basic-heart")
-          h3.heading-tertiary.u-margin-bottom-small Live a healthier life
-          p(class="feature-box__text")
-            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
-  section#section-tours.section-tours
-    .u-center-text.u-margin-bottom-big
-      h2.heading-secondary
-        | Most popular tours
-    main.main
-      .card-container
-        each tour in tours
-          .card
-            .card__header
-              .card__picture
-                .card__picture-overlay &nbsp;
-                img.card__picture-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
-              h3.heading-tertirary
-                span= tour.name
+//-   section#About.section-about
+//-     .u-center-text.u-margin-bottom-big
+//-       h2.heading-secondary
+//-         | Exciting tours for adventurous people
+//-     .row
+//-       .col-1-of-2
+//-         h3.heading-tertiary.u-margin-bottom-small You're going to fall in love with nature
+//-         p.paragraph
+//-           | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur libero repellat quis consequatur
+//-           | ducimus quam nisi exercitationem omnis earum qui.
+//-         h3.heading-tertiary.u-margin-bottom-small Live adventures like you never have before
+//-         p.paragraph
+//-           | Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores nulla deserunt voluptatum nam.
+//-         a.btn-text(href="#") Learn more → 
+//-       .col-1-of-2
+//-         .composition
+//-           img(srcset="/img/nat-1.jpg 300w, /img/nat-1-large.jpg 1000w", sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px", alt="Photo 1", class="composition__photo composition__photo--p1", src="/img/nat-1-large.jpg")
+//-           img(srcset="/img/nat-2.jpg 300w, /img/nat-2-large.jpg 1000w", sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px", alt="Photo 2", class="composition__photo composition__photo--p2", src="/img/nat-2-large.jpg")
+//-           img(srcset="/img/nat-3.jpg 300w, /img/nat-3-large.jpg 1000w", sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px", alt="Photo 3", class="composition__photo composition__photo--p3", src="/img/nat-3-large.jpg")
 
-            .card__details
-              h4.card__sub-heading= `${tour.difficulty} ${tour.duration}-day tour`
-              p.card__text= tour.summary
-              .card__data
-                svg.card__icon
-                  use(xlink:href='/img/icons.svg#icon-map-pin')
-                span(class="cardTours")= tour.startLocation.description
-              .card__data
-                svg.card__icon
-                  use(xlink:href='/img/icons.svg#icon-calendar')
-                span(class="cardTours")= tour.startDates[0].toLocaleString('en-us', {month: 'long', year: 'numeric'})
-              .card__data
-                svg.card__icon
-                  use(xlink:href='/img/icons.svg#icon-flag')
-                span(class="cardTours")= `${tour.locations.length} stops`
-              .card__data
-                svg.card__icon
-                  use(xlink:href='/img/icons.svg#icon-user')
-                span(class="cardTours")= `${tour.maxGroupSize} people`
 
-            .card__footer
-              p
-                span.card__footer-value(class="cardTours")= `${tour.price}$`
-                | 
-                span.card__footer-text per person
-              p.card__ratings
-                span.card__footer-value(class="cardTours")= tour.ratingsAverage
-                | 
-                span.card__footer-text= `rating (${tour.ratingsQuantity})`
-              a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details
-        
-    .u-center-text.u-margin-top-huge
-      a.btn.btn--green(href="/All-Tours") Discover all tours
-  section.section-stories
-    .bg-video
-      video(class="bg-video__content", autoplay, muted, loop)
-        source(src="/img/videos.mp4", type="video/mp4")
-        source(src="/img/videos.mp4", type="video/mp4")
-        | Your browser is not supported!
-    .u-center-text.u-margin-bottom-big
-      h2(class= "heading-secondary-stories")
-        | We make people genuinely happy
-    .row
-      .story
-        figure(class="story__shape")
-          img(src="/img/nat-8.jpg", alt="Person on a tour", class="story__img")
-          figcaption(class="story__caption") Mary Smith
-        div(class="story__text")
-          h3.heading-tertiary.u-margin-bottom-small(class= "stories") I had the best week ever with my family
-          p(class= "stories")
-            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur libero repellat quis consequatur
-            | ducimus quam nisi exercitationem omnis earum qui. Aperiam, ipsum sapiente aspernatur libero
-            | repellat quis consequatur ducimus quam nisi exercitationem omnis earum qui.
-    .row
-      .story
-        figure(class="story__shape")
-          img(src="/img/nat-9.jpg", alt="Person on a tour", class="story__img")
-          figcaption(class="story__caption") Jack Wilson
-        div(class="story__text")
-          h3.heading-tertiary.u-margin-bottom-small(class= "stories") WOW! My life is completely different now
-          p(class= "stories")
-            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur libero repellat quis consequatur
-            | ducimus quam nisi exercitationem omnis earum qui. Aperiam, ipsum sapiente aspernatur libero
-            | repellat quis consequatur ducimus quam nisi exercitationem omnis earum qui.
-  section.section-book
-    .row
-      .book
-        div(class="book__form")
-          form.form(action="#")
-            .u-margin-bottom-medium
-              h2(class="foooter")
-                |Ready to begin your adventure? Sign up now and embrace the wonders that await!
-            div(class="form__group")
-              a(href="/signup", class="btnn btn--green") Create an account!!!
-              
+//-   section.section-features
+//-     .row
+//-       .col-1-of-4
+//-         .feature-box
+//-           i(class="feature-box__icon icon-basic-world")
+//-           h3.heading-tertiary.u-margin-bottom-small Explore the world
+//-           p(class="feature-box__text")
+//-             | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
+//-       .col-1-of-4
+//-         .feature-box
+//-           i(class="feature-box__icon icon-basic-compass")
+//-           h3.heading-tertiary.u-margin-bottom-small Meet nature
+//-           p(class="feature-box__text")
+//-             | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
+//-       .col-1-of-4
+//-         .feature-box
+//-           i(class="feature-box__icon icon-basic-map")
+//-           h3.heading-tertiary.u-margin-bottom-small Find your way
+//-           p(class="feature-box__text")
+//-             | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
+//-       .col-1-of-4
+//-         .feature-box
+//-           i(class="feature-box__icon icon-basic-heart")
+//-           h3.heading-tertiary.u-margin-bottom-small Live a healthier life
+//-           p(class="feature-box__text")
+//-             | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
+//-   section#section-tours.section-tours
+//-     .u-center-text.u-margin-bottom-big
+//-       h2.heading-secondary
+//-         | Most popular tours
+//-     main.main
+//-       .card-container
+//-         each tour in tours
+//-           .card
+//-             .card__header
+//-               .card__picture
+//-                 .card__picture-overlay &nbsp;
+//-                 img.card__picture-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
+//-               h3.heading-tertirary
+//-                 span= tour.name
+
+//-             .card__details
+//-               h4.card__sub-heading= `${tour.difficulty} ${tour.duration}-day tour`
+//-               p.card__text= tour.summary
+//-               .card__data
+//-                 svg.card__icon
+//-                   use(xlink:href='/img/icons.svg#icon-map-pin')
+//-                 span(class="cardTours")= tour.startLocation.description
+//-               .card__data
+//-                 svg.card__icon
+//-                   use(xlink:href='/img/icons.svg#icon-calendar')
+//-                 span(class="cardTours")= tour.startDates[0].toLocaleString('en-us', {month: 'long', year: 'numeric'})
+//-               .card__data
+//-                 svg.card__icon
+//-                   use(xlink:href='/img/icons.svg#icon-flag')
+//-                 span(class="cardTours")= `${tour.locations.length} stops`
+//-               .card__data
+//-                 svg.card__icon
+//-                   use(xlink:href='/img/icons.svg#icon-user')
+//-                 span(class="cardTours")= `${tour.maxGroupSize} people`
+
+//-             .card__footer
+//-               p
+//-                 span.card__footer-value(class="cardTours")= `${tour.price}$`
+//-                 | 
+//-                 span.card__footer-text per person
+//-               p.card__ratings
+//-                 span.card__footer-value(class="cardTours")= tour.ratingsAverage
+//-                 | 
+//-                 span.card__footer-text= `rating (${tour.ratingsQuantity})`
+//-               a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details
+
+//-     .u-center-text.u-margin-top-huge
+//-       a.btn.btn--green(href="/All-Tours") Discover all tours
+//-   section.section-stories
+//-     .bg-video
+//-       video(class="bg-video__content", autoplay, muted, loop)
+//-         source(src="/img/videos.mp4", type="video/mp4")
+//-         source(src="/img/videos.mp4", type="video/mp4")
+//-         | Your browser is not supported!
+//-     .u-center-text.u-margin-bottom-big
+//-       h2(class= "heading-secondary-stories")
+//-         | We make people genuinely happy
+//-     .row
+//-       .story
+//-         figure(class="story__shape")
+//-           img(src="/img/nat-8.jpg", alt="Person on a tour", class="story__img")
+//-           figcaption(class="story__caption") Mary Smith
+//-         div(class="story__text")
+//-           h3.heading-tertiary.u-margin-bottom-small(class= "stories") I had the best week ever with my family
+//-           p(class= "stories")
+//-             | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur libero repellat quis consequatur
+//-             | ducimus quam nisi exercitationem omnis earum qui. Aperiam, ipsum sapiente aspernatur libero
+//-             | repellat quis consequatur ducimus quam nisi exercitationem omnis earum qui.
+//-     .row
+//-       .story
+//-         figure(class="story__shape")
+//-           img(src="/img/nat-9.jpg", alt="Person on a tour", class="story__img")
+//-           figcaption(class="story__caption") Jack Wilson
+//-         div(class="story__text")
+//-           h3.heading-tertiary.u-margin-bottom-small(class= "stories") WOW! My life is completely different now
+//-           p(class= "stories")
+//-             | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur libero repellat quis consequatur
+//-             | ducimus quam nisi exercitationem omnis earum qui. Aperiam, ipsum sapiente aspernatur libero
+//-             | repellat quis consequatur ducimus quam nisi exercitationem omnis earum qui.
+//-   section.section-book
+//-     .row
+//-       .book
+//-         div(class="book__form")
+//-           form.form(action="#")
+//-             .u-margin-bottom-medium
+//-               h2(class="foooter")
+//-                 |Ready to begin your adventure? Sign up now and embrace the wonders that await!
+//-             div(class="form__group")
+//-               a(href="/signup", class="btnn btn--green") Create an account!!!
+
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Tourly - Travel agency
+    script(type="module", src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js")
+    script(nomodule, src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js")
+    link(rel="shortcut icon", href="/images/favicon.svg", type="image/svg+xml")
+    link(rel="stylesheet", href="/css/styles.css")
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap", rel="stylesheet")
+
+  body#top
+    header.header(data-header)
+      .overlay(data-overlay)
+      .header-top
+        .container
+          a.helpline-box(href="tel:+01123456790")
+            .icon-box
+              ion-icon(name="call-outline")
+            .wrapper
+              p.helpline-title For Further Inquires :
+              p.helpline-number +01 (123) 4567 90
+          a.logo(href="#")
+            img(src="/images/logo.svg", alt="Tourly logo")
+          .header-btn-group
+            button.search-btn(aria-label="Search")
+              ion-icon(name="search")
+            button.nav-open-btn(aria-label="Open Menu", data-nav-open-btn)
+              ion-icon(name="menu-outline")
+      .header-bottom
+        .container
+          ul.social-list
+            li
+              a.social-link(href="#")
+                ion-icon(name="logo-facebook")
+            li
+              a.social-link(href="#")
+                ion-icon(name="logo-twitter")
+            li
+              a.social-link(href="#")
+                ion-icon(name="logo-youtube")
+          nav.navbar(data-navbar)
+            .navbar-top
+              a.logo(href="#")
+                img(src="/images/logo-blue.svg", alt="Tourly logo")
+              button.nav-close-btn(aria-label="Close Menu", data-nav-close-btn)
+                ion-icon(name="close-outline")
+            ul.navbar-list
+              li
+                a.navbar-link(href="#home", data-nav-link) home
+              li
+                a.navbar-link(href="#", data-nav-link) about us
+              li
+                a.navbar-link(href="#destination", data-nav-link) destination
+              li
+                a.navbar-link(href="#package", data-nav-link) packages
+              li
+                a.navbar-link(href="#gallery", data-nav-link) gallery
+              li
+                a.navbar-link(href="#contact", data-nav-link) contact us
+          button.btn.btn-primary Book Now
+
+    main
+      article
+        section.hero#home
+          div.container
+            h2.h1.hero-title Journey to explore world
+            p.hero-text
+              | Ac mi duis mollis. Sapiente? Scelerisque quae, penatibus? Suscipit class corporis nostra rem quos voluptatibus habitant?
+              | Fames, vivamus minim nemo enim, gravida lobortis quasi, eum.
+
+            div.btn-group
+              a.btn.btn-primary(href="/signup") SignUp
+              a.btn.btn-secondary(href="/login") Login
+
+        section.tour-search
+          div.container
+            form.tour-search-form
+              div.input-wrapper
+                label.input-label(for="destination") Search Destination*
+                input.input-field(type="text", name="destination", id="destination", required, placeholder="Enter Destination")
+
+              div.input-wrapper
+                label.input-label(for="people") Pax Number*
+                input.input-field(type="number", name="people", id="people", required, placeholder="No.of People")
+
+              div.input-wrapper
+                label.input-label(for="checkin") Checkin Date**
+                input.input-field(type="date", name="checkin", id="checkin", required)
+
+              div.input-wrapper
+                label.input-label(for="checkout") Checkout Date*
+                input.input-field(type="date", name="checkout", id="checkout", required)
+
+              button.btn.btn-secondary Inquire now
+
+        section.popular#destination
+          div.container
+            p.section-subtitle Uncover place
+            h2.h2.section-title Popular destination
+            p.section-text Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque laudantium.
+              Sit ornare mollitia tenetur, aptent.
+
+            ul.popular-list
+              li
+                div.popular-card
+                  figure.card-img
+                    img(src="/images/popular-1.jpg", alt="San miguel, italy", loading="lazy")
+                  div.card-content
+                    div.card-rating
+                      ion-icon(name="star")
+                      ion-icon(name="star")
+                      ion-icon(name="star")
+                      ion-icon(name="star")
+                      ion-icon(name="star")
+                    p.card-subtitle
+                      a(href="#") Italy
+                    h3.h3.card-title
+                      a(href="#") San miguel
+                    p.card-text Fusce hic augue velit wisi ips quibusdam pariatur, iusto.
+
+              li
+                div.popular-card
+                  figure.card-img
+                    img(src="/images/popular-2.jpg", alt="Burj khalifa, dubai", loading="lazy")
+                  div.card-content
+                    div.card-rating
+                      ion-icon(name="star")
+                      ion-icon(name="star")
+                      ion-icon(name="star")
+                      ion-icon(name="star")
+                      ion-icon(name="star")
+                    p.card-subtitle
+                      a(href="#") Dubai
+                    h3.h3.card-title
+                      a(href="#") Burj khalifa
+                    p.card-text Fusce hic augue velit wisi ips quibusdam pariatur, iusto.
+
+              li
+                div.popular-card
+                  figure.card-img
+                    img(src="/images/popular-3.jpg", alt="Kyoto temple, japan", loading="lazy")
+                  div.card-content
+                    div.card-rating
+                      ion-icon(name="star")
+                      ion-icon(name="star")
+                      ion-icon(name="star")
+                      ion-icon(name="star")
+                      ion-icon(name="star")
+                    p.card-subtitle
+                      a(href="#") Japan
+                    h3.h3.card-title
+                      a(href="#") Kyoto temple
+                    p.card-text Fusce hic augue velit wisi ips quibusdam pariatur, iusto.
+
+            button.btn.btn-primary More destination
+
+        section.package#package
+          div.container
+            p.section-subtitle Popular Packages
+            h2.h2.section-title Checkout Our Packages
+            p.section-text Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque laudantium.
+              Sit ornare mollitia tenetur, aptent.
+
+            ul.package-list
+              li
+                div.package-card
+                  figure.card-banner
+                    img(src="/images/packege-1.jpg", alt="Experience The Great Holiday On Beach", loading="lazy")
+                  div.card-content
+                    h3.h3.card-title Experience The Great Holiday On Beach
+                    p.card-text
+                      | Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo maiores, est aliquet porttitor! Eaque,
+                      | cras, aspernatur.
+                    ul.card-meta-list
+                      li.card-meta-item
+                        div.meta-box
+                          ion-icon(name="time")
+                          p.text 7D/6N
+                      li.card-meta-item
+                        div.meta-box
+                          ion-icon(name="people")
+                          p.text pax: 10
+                      li.card-meta-item
+                        div.meta-box
+                          ion-icon(name="location")
+                          p.text Malaysia
+                  div.card-price
+                    div.wrapper
+                      p.reviews (25 reviews)
+                      div.card-rating
+                        ion-icon(name="star")
+                        ion-icon(name="star")
+                        ion-icon(name="star")
+                        ion-icon(name="star")
+                        ion-icon(name="star")
+                    p.price $750 
+                      span / per person
+                    button.btn.btn-secondary Book Now
+
+              li
+                div.package-card
+                  figure.card-banner
+                    img(src="/images/packege-2.jpg", alt="Summer Holiday To The Oxolotan River", loading="lazy")
+                  div.card-content
+                    h3.h3.card-title Summer Holiday To The Oxolotan River
+                    p.card-text 
+                      | Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo maiores, est aliquet porttitor! Eaque,
+                      | cras, aspernatur.
+                    ul.card-meta-list
+                      li.card-meta-item
+                        div.meta-box
+                          ion-icon(name="time")
+                          p.text 7D/6N
+                      li.card-meta-item
+                        div.meta-box
+                          ion-icon(name="people")
+                          p.text pax: 10
+                      li.card-meta-item
+                        div.meta-box
+                          ion-icon(name="location")
+                          p.text Malaysia
+                  div.card-price
+                    div.wrapper
+                      p.reviews (20 reviews)
+                      div.card-rating
+                        ion-icon(name="star")
+                        ion-icon(name="star")
+                        ion-icon(name="star")
+                        ion-icon(name="star")
+                        ion-icon(name="star")
+                    p.price $520
+                      span / per person
+                    button.btn.btn-secondary Book Now
+
+              li
+                div.package-card
+                  figure.card-banner
+                    img(src="/images/packege-3.jpg", alt="Santorini Island's Weekend Vacation", loading="lazy")
+                  div.card-content
+                    h3.h3.card-title Santorini Island's Weekend Vacation
+                    p.card-text 
+                      | Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo maiores, est aliquet porttitor! Eaque,
+                      | cras, aspernatur.
+                    ul.card-meta-list
+                      li.card-meta-item
+                        div.meta-box
+                          ion-icon(name="time")
+                          p.text 7D/6N
+                      li.card-meta-item
+                        div.meta-box
+                          ion-icon(name="people")
+                          p.text pax: 10
+                      li.card-meta-item
+                        div.meta-box
+                          ion-icon(name="location")
+                          p.text Malaysia
+                  div.card-price
+                    div.wrapper
+                      p.reviews (30 reviews)
+                      div.card-rating
+                        ion-icon(name="star")
+                        ion-icon(name="star")
+                        ion-icon(name="star")
+                        ion-icon(name="star")
+                        ion-icon(name="star")
+                    p.price $870 
+                      span / per person
+                    button.btn.btn-secondary Book Now
+
+            button.btn.btn-primary
+              a(href="/All-Tours") More Packages
+
+        section#gallery.gallery
+          div.container
+            p.section-subtitle Uncover place
+            h2.h2.section-title Memories Gallery
+            p.section-text 
+              | Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque laudantium.
+              | Sit ornare mollitia tenetur, aptent.
+
+            ul.gallery-list
+              li.gallery-item
+                figure.gallery-image
+                  img(src="/images/gallery-1.jpg", alt="Gallery image")
+              li.gallery-item
+                figure.gallery-image
+                  img(src="/images/gallery-2.jpg", alt="Gallery image")
+              li.gallery-item
+                figure.gallery-image
+                  img(src="/images/gallery-3.jpg", alt="Gallery image")
+              li.gallery-item
+                figure.gallery-image
+                  img(src="/images/gallery-4.jpg", alt="Gallery image")
+              li.gallery-item
+                figure.gallery-image
+                  img(src="/images/gallery-5.jpg", alt="Gallery image")
+
+        section#contact.cta
+          .container
+            .cta-content
+              p.section-subtitle Call To Action
+              h2.h2.section-title Ready For Unforgatable Travel. Remember Us!
+              p.section-text
+                | Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque
+                | laudantium. Sit ornare
+                | mollitia tenetur, aptent.
+            button.btn.btn-secondary Contact Us !
+
+    footer.footer
+      .footer-top
+        .container
+          .footer-brand
+            a.logo(href="#")
+              img(src="/images/logo.svg", alt="Tourly logo")
+            p.footer-text
+              | Urna ratione ante harum provident, eleifend, vulputate molestiae proin fringilla, praesentium magna conubia
+              | at
+              | perferendis, pretium, aenean aut ultrices.
+          .footer-contact
+            h4.contact-title Contact Us
+            p.contact-text
+              | Feel free to contact and reach us !!
+            ul
+              li.contact-item
+                ion-icon(name="call-outline")
+                a.contact-link(href="tel:+01123456790") +01 (123) 4567 90
+              li.contact-item
+                ion-icon(name="mail-outline")
+                a.contact-link(href="mailto:info.tourly.com") info.tourly.com
+              li.contact-item
+                ion-icon(name="location-outline")
+                address 3146 Koontz, California
+          .footer-form
+            p.form-text
+              | Subscribe our newsletter for more update &amp; news !!
+            form.form-wrapper
+              input.input-field(type="email", name="email", placeholder="Enter Your Email", required)
+              button.btn.btn-secondary(type="submit") Subscribe
+      .footer-bottom
+        .container
+          p.copyright
+            | &copy; 2022
+            a(href="#") codewithsadee
+            | . All rights reserved
+          ul.footer-bottom-list
+            li
+              a.footer-bottom-link(href="#") Privacy Policy
+            li
+              a.footer-bottom-link(href="#") Term &amp; Condition
+            li
+              a.footer-bottom-link(href="#") FAQ
+
+    a.go-top(href="#top", data-go-top)
+      ion-icon(name="chevron-up-outline")

@@ -1,0 +1,87 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="shortcut icon", href="/images/favicon.svg", type="image/svg+xml")
+    script(type="module", src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js")
+    script(nomodule, src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js")
+    title Login Page
+    link(rel="stylesheet", href="css/login.css")
+    link(rel="stylesheet", href="css/styles.css")
+  body
+    // Header
+    header.header
+      .header-top
+        .container
+          // Header Top Content (Placeholder)
+          .helpline-box
+            .icon-box
+              a(href="/") Back
+          .logo
+            img(src="/images/logo.svg", alt="Logo")
+          .header-btn-group
+      .overlay
+    // Login Form Section
+    section.heroo
+      .container
+        h1.hero-title Welcome to our Login Page
+        p.hero-text Please enter your username and password to log in.
+        .login-form
+          form
+            .input-wrapper
+              input#username.input-field(type='email', placeholder='you@example.com', required)
+            .input-wrapper
+              input#password.input-field(type='password', placeholder='••••••••', required, minlength='8')
+            buttonn.btnn.btnn-primary Login
+            .login-form-text
+                | Don't have an account? 
+                a(href="/signup") Create one
+                |  or 
+                a(href="/forgotPassword") Forgot Password
+    // Footer
+    footer.footer
+      .footer-top
+        .container
+          // Footer Top Content (Placeholder)
+          .footer-brand
+            .logo
+              img(src="/images/logo.svg", alt="Logo")
+            p.footer-text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor quam vitae vestibulum laoreet.
+          .footer-contact
+            h2.contact-title Contact Us
+            p.contact-text
+              ion-icon(name="location-outline")
+              | 123 Street, City, Country
+            p.contact-text
+              ion-icon(name="mail-outline")
+              | contact@example.com
+            p.contact-text
+              ion-icon(name="call-outline")
+              | +123 456 789
+          .footer-form
+            h2.form-text Subscribe to Our Newsletter
+            form
+              .form-wrapper
+                input.input-field(type="email", placeholder="Enter your email address")
+                button.btn.btn-primary(type="submit") Subscribe
+      .footer-bottom
+        .container
+          p.copyright
+            | &amp;copy; 2023 Your Company. All rights reserved. |
+            a(href="#") Privacy Policy
+            | |
+            a(href="#") Terms of Service
+          ul.footer-bottom-list
+            li
+              a.footer-bottom-link(href="#") Home
+            li
+              a.footer-bottom-link(href="#") About
+            li
+              a.footer-bottom-link(href="#") Services
+            li
+              a.footer-bottom-link(href="#") Contact
+    // Go to Top Button
+    button.go-top
+      ion-icon(name="arrow-up")
+    script(src="path/to/ionicons.js")
