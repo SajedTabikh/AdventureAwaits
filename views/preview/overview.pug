@@ -1,45 +1,40 @@
-
 extends baseOverview
-
 block content
   section.package#package
     .container
       p.section-subtitle Popular Packages
       h2.h2.section-title Checkout Our Packages
       ul.package-list
-        //- Replace the content with your package cards
-        //- Example Package Card
-        li
-          .package-card
-            figure.card-banner
-              img(src="/images/packege-1.jpg", alt="Experience The Great Holiday On Beach", loading="lazy")
-            .card-content
-              h3.h3.card-title Experience The Great Holiday On Beach
-              p.card-text Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo
-                | maiores, est aliquet porttitor! Eaque,
-                | cras, aspernatur.
-              ul.card-meta-list
-                li.card-meta-item
-                  .meta-box
-                    ion-icon(name="time")
-                    p.text 7D/6N
-                li.card-meta-item
-                  .meta-box
-                    ion-icon(name="people")
-                    p.text pax: 10
-                li.card-meta-item
-                  .meta-box
-                    ion-icon(name="location")
-                    p.text Malaysia
-            .card-price
-              .wrapper
-                p.reviews (25 reviews)
-                .card-rating
-                  ion-icon(name="star")
-                  ion-icon(name="star")
-                  ion-icon(name="star")
-                  ion-icon(name="star")
-                  ion-icon(name="star")
-              p.price $750
-                span / per person
-              button.btn.btn-secondary Book Now
+        each tour in tours
+          li
+            .package-card
+              figure.card-banner
+                img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`, loading="lazy")
+              .card-content
+                h3.h3.card-title= tour.name
+                p.card-text= tour.summary
+                ul.card-meta-list
+                  li.card-meta-item
+                    .meta-box
+                      ion-icon(name="time")
+                      p.text= tour.duration
+                  li.card-meta-item
+                    .meta-box
+                      ion-icon(name="people")
+                      p.text= tour.maxGroupSize
+                  li.card-meta-item
+                    .meta-box
+                      ion-icon(name="location")
+                      p.text= tour.startLocation.description
+              .card-price
+                .wrapper
+                  p.reviews= `(${tour.ratingsQuantity} reviews)`
+                  .card-rating
+                    ion-icon(name="star")
+                    ion-icon(name="star")
+                    ion-icon(name="star")
+                    ion-icon(name="star")
+                    ion-icon(name="star")
+                p.price= `$${tour.price}`
+                  span / per person
+                a.btn.btn-secondary(href=`/tour/${tour.slug}`) More Details
