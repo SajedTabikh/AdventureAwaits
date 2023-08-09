@@ -400,15 +400,15 @@ body {
 /* Add media query for smaller screens (e.g., phones) */
 @media only screen and (max-width: 37.5em) {
   .header {
-    padding: 12px 0rem;
-    height: auto;
+    padding: 26px 0rem;
+    height: 22rem;
     text-align: center;
   }
   .header__logo {
     margin-bottom: 1.5rem;
   }
   .header__logo img {
-    height: 3rem;
+    height: 22rem;
   }
   .nav {
     display: flex;
@@ -1211,7 +1211,6 @@ body {
   display: inline-flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center;
   transition: all 0.2s;
   font-weight: 400;
   background: none;
@@ -1219,20 +1218,21 @@ body {
   border: none;
   cursor: pointer;
   font-family: inherit;
+  align-items: center;
 }
 .nav__el:hover,
 .nav__el:active {
   -webkit-transform: translateY(-2px);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
   text-shadow: 0 0.7rem 1rem black;
 }
 .nav__el:not(:last-child) {
-  margin-right: 3rem;
+  margin-right: 2rem;
 }
 @media only screen and (max-width: 37.5em) {
   .nav__el:not(:last-child) {
-    margin-right: 0;
-    margin-bottom: 1.2rem;
+    margin-right: 4px;
+    margin-bottom: 0.2rem;
   }
 }
 .nav__el:focus {
@@ -1682,4 +1682,83 @@ body {
 .form__group input.form__input.focus {
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
   outline: none;
+}
+
+.header {
+  display: flex;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav__el {
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.header__logo img {
+  width: 166px;
+}
+
+.nav--user .nav__user-img {
+  width: 48px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+/* Media query for phones */
+@media only screen and (max-width: 600px) {
+  .header {
+    flex-direction: row;
+    padding: 1px;
+  }
+
+  .nav {
+    margin-top: -1px;
+  }
+
+  .nav__el {
+    margin-right: 0;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .header__logo img {
+    margin-bottom: 2px;
+  }
+}
+
+
+/* Media query for phones */
+@media only screen and (max-width: 600px) {
+  .nav__el, .nav__el:link, .nav__el:visited {
+    font-size: 3rem;
+    color: #f7f7f7;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    transition: all 0.2s;
+    font-weight: 400;
+    background: none;
+    margin: 1px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    align-items: center;
+    /* margin: 5px; */
+  }
 }

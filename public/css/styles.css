@@ -101,7 +101,9 @@ span,
 input,
 label,
 button,
-ion-icon { display: block; }
+ion-icon {
+    display: block;
+}
 
 input,
 button {
