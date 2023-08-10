@@ -11,7 +11,7 @@ body {
 }
 
 ::selection {
-  background-color: #55c57a;
+  /* background-color: #55c57a; */
   color: #fff;
 }
 
@@ -145,7 +145,7 @@ body {
     from(#7dd56f),
     to(#28b487)
   );
-  background-image: linear-gradient(to right, #7dd56f, #28b487);
+  background-image: linear-gradient(to right, #1d16aa, #2581c4);
   -webkit-background-clip: text;
   color: transparent;
   letter-spacing: 0.1rem;
@@ -176,7 +176,7 @@ body {
 .heading-primary span,
 .heading-tertirary span {
   padding: 1rem 1.5rem;
-  line-height: 1.3;
+  line-height: 1.49;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   /* background-image: -webkit-gradient(
@@ -189,7 +189,7 @@ body {
   background-image: linear-gradient(
     to bottom right,
     #194662,
-    rgba(40, 180, 135, 0.85)
+    rgb(40 90 180 / 85%)
   );
 }
 
@@ -253,7 +253,7 @@ body {
 
 .btn:focus {
   outline: none;
-  background-color: #2e864b;
+  background-color: #3d62a3c0;
 }
 
 .btn--white {
@@ -265,11 +265,11 @@ body {
 }
 
 .btn--green {
-  background-color: #55c57a;
+  background-color: #184d99;
   color: #fff;
 }
 .btn--green::after {
-  background-color: #55c57a;
+  background-color: #0a11e2;
 }
 
 .btn--small {
@@ -280,7 +280,7 @@ body {
 .btn-small,
 .btn-small:link,
 .btn-small:visited {
-  background-color: #55c57a;
+  background-color: #175ca1;
   color: #fff;
   font-size: 1.4rem;
   padding: 1.25rem 3rem;
@@ -296,12 +296,12 @@ body {
 }
 
 .btn-small:hover {
-  background-color: #7dd56f;
+  background-color: #0e46a8;
 }
 
 .btn-text:link,
 .btn-text:visited {
-  color: #55c57a;
+  color: #0e2dc6;
   display: inline-block;
   text-decoration: none;
   border-bottom: 1px solid #55c57a;
@@ -311,7 +311,7 @@ body {
 }
 
 .btn-text:hover {
-  background-color: #55c57a;
+  background-color: #0c38a8;
   color: #fff;
   -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
@@ -358,8 +358,8 @@ header.header {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    height: 16rem;
-    padding: 3rem 5rem;
+    height: 18rem;
+    padding: 1rem 5rem;
   }
 }
 .header__logo img {
@@ -702,7 +702,7 @@ section.section-header {
   display: grid;
   grid-column-gap: 6rem;
   grid-auto-flow: column;
-  overflow-x: scroll;
+  overflow-x: hidden;
   -ms-scroll-snap-type: x mandatory;
   scroll-snap-type: x mandatory;
 }
@@ -712,6 +712,7 @@ section.section-header {
     grid-column-gap: 2.5rem;
   }
 }
+
 
 
 .reviews__card {
@@ -739,6 +740,7 @@ section.section-header {
     width: 25rem;
   }
 }
+
 
 .reviews:before,
 .reviews:after {
@@ -924,10 +926,10 @@ section.section-header {
     linear,
     left top,
     right bottom,
-    from(#7dd56f),
-    to(#28b487)
+    from(#06259d),
+    to(#3d7f6a)
   );
-  background-image: linear-gradient(to right bottom, #7dd56f, #28b487);
+  /* background-image: linear-gradient(to right bottom, #7dd56f, #28b487); */
   padding: 4rem 0;
 }
 
@@ -1072,8 +1074,7 @@ section.section-header {
   .nav--user {
     flex-direction: row !important;
     justify-content: space-around !important;
-    width: 100% !important
-    ;
+    width: 100% !important;
   }
 }
 
@@ -1313,14 +1314,14 @@ section.section-header {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: -webkit-gradient(
+  /* background-image: -webkit-gradient(
     linear,
     left top,
     right bottom,
     from(#7dd56f),
     to(#28b487)
-  );
-  background-image: linear-gradient(to right bottom, #7dd56f, #28b487);
+  ); */
+  /* background-image: linear-gradient(to right bottom, #7dd56f, #28b487); */
   opacity: 0.7;
 }
 .card__picture-img {
@@ -1364,7 +1365,7 @@ section.section-header {
 .card__icon {
   height: 2rem;
   width: 2rem;
-  fill: #55c57a;
+  fill: #2013c5;
 }
 .card__footer {
   background-color: #f7f7f7;
@@ -1533,18 +1534,19 @@ section.section-header {
 }
 
 .form__upload + label {
-  color: #55c57a;
+  color: #0010059e;
   display: inline-block;
   text-decoration: none;
-  border-bottom: 1px solid #55c57a;
+  border-bottom: 1px solid #010d05;
   padding: 3px;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   cursor: pointer;
 }
 .form__upload + label:hover {
-  background-color: #55c57a;
+  background-color: #5778e6aa;
   color: #fff;
+  border-radius: 3%;
   -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   -webkit-transform: translateY(-2px);
