@@ -1,13 +1,16 @@
 export const displayMAp = (locations) => {
+  // mapboxgl.accessToken =
+  //   'pk.eyJ1Ijoiam9uYXNzY2htZWR0bWFubiIsImEiOiJjam54ZmM5N3gwNjAzM3dtZDNxYTVlMnd2In0.ytpI7V7w7cyT1Kq5rT9Z1A'; // For the white map
   mapboxgl.accessToken =
-    'pk.eyJ1Ijoiam9uYXNzY2htZWR0bWFubiIsImEiOiJjam54ZmM5N3gwNjAzM3dtZDNxYTVlMnd2In0.ytpI7V7w7cyT1Kq5rT9Z1A';
+    'pk.eyJ1Ijoic2VjaGVlZCIsImEiOiJjbGs3MnEzaTIwNWtrM2xwcnUwc2ttdDloIn0.ATgWZSYXE0C6ByRzhi-dww';
 
   document.addEventListener('DOMContentLoaded', () => {
     const map = new mapboxgl.Map({
       container: 'map',
       scrollZoom: false,
       zoom: 10,
-      style: 'mapbox://styles/jonasschmedtmann/cjvi9q8jd04mi1cpgmg7ev3dy',
+      // style: 'mapbox://styles/jonasschmedtmann/cjvi9q8jd04mi1cpgmg7ev3dy', // For the white map
+      style: 'mapbox://styles/secheed/cll5knobf00fn01p86m99hiit',
     });
 
     const bounds = new mapboxgl.LngLatBounds();

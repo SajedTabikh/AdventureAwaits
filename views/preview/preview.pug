@@ -14,7 +14,7 @@ html(lang="en")
     link(href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap", rel="stylesheet")
     link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
     script(src="https://js.stripe.com/v3/") 
-     
+
 
 
   body#top
@@ -116,8 +116,7 @@ html(lang="en")
                       ion-icon(name="star")
                       ion-icon(name="star")
                       ion-icon(name="star")
-                    p.card-subtitle
-                      a(href="#") Italy
+                    p.card-subtitle Italy
                     h3.h3.card-title
                       a(href="#") San miguel
                     p.card-text Fusce hic augue velit wisi ips quibusdam pariatur, iusto.
@@ -133,8 +132,7 @@ html(lang="en")
                       ion-icon(name="star")
                       ion-icon(name="star")
                       ion-icon(name="star")
-                    p.card-subtitle
-                      a(href="#") Dubai
+                    p.card-subtitle Dubai
                     h3.h3.card-title
                       a(href="#") Burj khalifa
                     p.card-text Fusce hic augue velit wisi ips quibusdam pariatur, iusto.
@@ -150,13 +148,12 @@ html(lang="en")
                       ion-icon(name="star")
                       ion-icon(name="star")
                       ion-icon(name="star")
-                    p.card-subtitle
-                      a(href="#") Japan
+                    p.card-subtitle Japan
                     h3.h3.card-title
                       a(href="#") Kyoto temple
                     p.card-text Fusce hic augue velit wisi ips quibusdam pariatur, iusto.
 
-            button.btn.btn-primary More destination
+            button.btn.btn-primary(href="/All-Tours") More destination
 
         section.package#package
           div.container
@@ -166,110 +163,109 @@ html(lang="en")
               Sit ornare mollitia tenetur, aptent.
 
             ul.package-list
-              li
-                div.package-card
-                  figure.card-banner
-                    img(src="/images/packege-1.jpg", alt="Experience The Great Holiday On Beach", loading="lazy")
-                  div.card-content
-                    h3.h3.card-title Experience The Great Holiday On Beach
-                    p.card-text
-                      | Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo maiores, est aliquet porttitor! Eaque,
-                      | cras, aspernatur.
-                    ul.card-meta-list
-                      li.card-meta-item
-                        div.meta-box
-                          ion-icon(name="time")
-                          p.text 7D/6N
-                      li.card-meta-item
-                        div.meta-box
-                          ion-icon(name="people")
-                          p.text pax: 10
-                      li.card-meta-item
-                        div.meta-box
-                          ion-icon(name="location")
-                          p.text Malaysia
-                  div.card-price
-                    div.wrapper
-                      p.reviews (25 reviews)
-                      div.card-rating
-                        ion-icon(name="star")
-                        ion-icon(name="star")
-                        ion-icon(name="star")
-                        ion-icon(name="star")
-                        ion-icon(name="star")
-                    p.price $750 
-                      span / per person
-                    button.btn.btn-secondary Book Now
+              each tour in tours.slice(0, 3)
+                li
+                  div.package-card
+                    figure.card-banner
+                      img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`, loading="lazy")
+                    div.card-content
+                      h3.h3.card-title= ${tour.name}
+                      p.card-text= tour.summary
+                      ul.card-meta-list
+                        li.card-meta-item
+                          div.meta-box
+                            ion-icon(name="time")
+                            p.text= tour.duration
+                        li.card-meta-item
+                          div.meta-box
+                            ion-icon(name="people")
+                            p.text= tour.maxGroupSize
+                        li.card-meta-item
+                          div.meta-box
+                            ion-icon(name="location")
+                            p.text= tour.startLocation.description
+                    div.card-price
+                      div.wrapper
+                        p.reviews= `(${tour.ratingsQuantity} reviews)`
+                        div.card-rating
+                          ion-icon(name="star")
+                          ion-icon(name="star")
+                          ion-icon(name="star")
+                          ion-icon(name="star")
+                          ion-icon(name="star")
+                      p.price= `$${tour.price}`
+                        span / per person
+                      a.btn.btn-secondary(href=`/tour/${tour.slug}`) More Details
 
-              li
-                div.package-card
-                  figure.card-banner
-                    img(src="/images/packege-2.jpg", alt="Summer Holiday To The Oxolotan River", loading="lazy")
-                  div.card-content
-                    h3.h3.card-title Summer Holiday To The Oxolotan River
-                    p.card-text 
-                      | Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo maiores, est aliquet porttitor! Eaque,
-                      | cras, aspernatur.
-                    ul.card-meta-list
-                      li.card-meta-item
-                        div.meta-box
-                          ion-icon(name="time")
-                          p.text 7D/6N
-                      li.card-meta-item
-                        div.meta-box
-                          ion-icon(name="people")
-                          p.text pax: 10
-                      li.card-meta-item
-                        div.meta-box
-                          ion-icon(name="location")
-                          p.text Malaysia
-                  div.card-price
-                    div.wrapper
-                      p.reviews (20 reviews)
-                      div.card-rating
-                        ion-icon(name="star")
-                        ion-icon(name="star")
-                        ion-icon(name="star")
-                        ion-icon(name="star")
-                        ion-icon(name="star")
-                    p.price $520
-                      span / per person
-                    button.btn.btn-secondary Book Now
+              //- li
+              //-   div.package-card
+              //-     figure.card-banner
+              //-       img(src="/images/packege-2.jpg", alt="Summer Holiday To The Oxolotan River", loading="lazy")
+              //-     div.card-content
+              //-       h3.h3.card-title Summer Holiday To The Oxolotan River
+              //-       p.card-text 
+              //-         | Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo maiores, est aliquet porttitor! Eaque,
+              //-         | cras, aspernatur.
+              //-       ul.card-meta-list
+              //-         li.card-meta-item
+              //-           div.meta-box
+              //-             ion-icon(name="time")
+              //-             p.text 7D/6N
+              //-         li.card-meta-item
+              //-           div.meta-box
+              //-             ion-icon(name="people")
+              //-             p.text pax: 10
+              //-         li.card-meta-item
+              //-           div.meta-box
+              //-             ion-icon(name="location")
+              //-             p.text Malaysia
+              //-     div.card-price
+              //-       div.wrapper
+              //-         p.reviews (20 reviews)
+              //-         div.card-rating
+              //-           ion-icon(name="star")
+              //-           ion-icon(name="star")
+              //-           ion-icon(name="star")
+              //-           ion-icon(name="star")
+              //-           ion-icon(name="star")
+              //-       p.price $520
+              //-         span / per person
+              //-       button.btn.btn-secondary Book Now
 
-              li
-                div.package-card
-                  figure.card-banner
-                    img(src="/images/packege-3.jpg", alt="Santorini Island's Weekend Vacation", loading="lazy")
-                  div.card-content
-                    h3.h3.card-title Santorini Island's Weekend Vacation
-                    p.card-text 
-                      | Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo maiores, est aliquet porttitor! Eaque,
-                      | cras, aspernatur.
-                    ul.card-meta-list
-                      li.card-meta-item
-                        div.meta-box
-                          ion-icon(name="time")
-                          p.text 7D/6N
-                      li.card-meta-item
-                        div.meta-box
-                          ion-icon(name="people")
-                          p.text pax: 10
-                      li.card-meta-item
-                        div.meta-box
-                          ion-icon(name="location")
-                          p.text Malaysia
-                  div.card-price
-                    div.wrapper
-                      p.reviews (30 reviews)
-                      div.card-rating
-                        ion-icon(name="star")
-                        ion-icon(name="star")
-                        ion-icon(name="star")
-                        ion-icon(name="star")
-                        ion-icon(name="star")
-                    p.price $870 
-                      span / per person
-                    button.btn.btn-secondary Book Now
+              //- li
+              //-   div.package-card
+              //-     figure.card-banner
+              //-       img(src="/images/packege-3.jpg", alt="Santorini Island's Weekend Vacation", loading="lazy")
+              //-     div.card-content
+              //-       h3.h3.card-title Santorini Island's Weekend Vacation
+              //-       p.card-text 
+              //-         | Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo maiores, est aliquet porttitor! Eaque,
+              //-         | cras, aspernatur.
+              //-       ul.card-meta-list
+              //-         li.card-meta-item
+              //-           div.meta-box
+              //-             ion-icon(name="time")
+              //-             p.text 7D/6N
+              //-         li.card-meta-item
+              //-           div.meta-box
+              //-             ion-icon(name="people")
+              //-             p.text pax: 10
+              //-         li.card-meta-item
+              //-           div.meta-box
+              //-             ion-icon(name="location")
+              //-             p.text Malaysia
+              //-     div.card-price
+              //-       div.wrapper
+              //-         p.reviews (30 reviews)
+              //-         div.card-rating
+              //-           ion-icon(name="star")
+              //-           ion-icon(name="star")
+              //-           ion-icon(name="star")
+              //-           ion-icon(name="star")
+              //-           ion-icon(name="star")
+              //-       p.price $870 
+              //-         span / per person
+              //-       button.btn.btn-secondary Book Now
 
             button.btn.btn-primary
               a(href="/All-Tours") More Packages

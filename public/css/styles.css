@@ -39,8 +39,8 @@
    * typography
    */
 
-  --ff-poppins: "Poppins", sans-serif;
-  --ff-montserrat: "Montserrat", sans-serif;
+  --ff-poppins:"Poppins", sans-serif;
+  --ff-montserrat:"Montserrat", sans-serif;
 
   --fs-1: calc(20px + 3.5vw);
   --fs-2: calc(18px + 1.6vw);
@@ -73,9 +73,7 @@
    */
 
   --radius-15: 15px;
-  --radius-25: 25px;
-
-}
+  --radius-25: 25px;}
 
 
 
@@ -133,7 +131,7 @@ body { background: var(--white); }
  * #REUSED STYLE
 \*-----------------------------------*/
 
-.container {padding-inline: 15px;}
+.container {padding-inline: 5px;}
 
 .btn {
   color: var(--white);
@@ -190,7 +188,7 @@ body { background: var(--white); }
   margin-bottom: 8px;
 }
 
-.section-title { margin-bottom: 15px; }
+.section-title {margin-bottom: 15px;}
 
 .section-text {
   color: var(--black-coral);
@@ -524,17 +522,21 @@ body { background: var(--white); }
  * #PACKAGE
 \*-----------------------------------*/
 
-.package { padding-block: var(--section-padding); }
+.package {padding-block: var(--section-padding);}
 
-.package-list { margin-bottom: 40px; }
+.package-list { margin-bottom: 45px; }
 
 .package-list > li:not(:last-child) { margin-bottom: 30px; }
+
 
 .package-card {
   background: var(--cultured);
   overflow: hidden;
   border-radius: 15px;
+
 }
+
+
 
 .package-card .card-banner { height: 250px; }
 
@@ -550,7 +552,7 @@ body { background: var(--white); }
 
 .package-card .card-text {
   line-height: 1.6;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .card-meta-list {

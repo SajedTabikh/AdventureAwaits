@@ -470,8 +470,11 @@ section.section-header {
   -ms-flex-align: center;
   align-items: center;
   text-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.15);
-  background-image: linear-gradient( to bottom right, #194662, rgba(40, 180, 135, 0.85) );
+  /* background-image: linear-gradient( to bottom right, #194662, rgba(40, 180, 135, 0.85) ); */
+  background-image: linear-gradient(    to bottom right,    #194662,    rgb(40 90 180 / 85%)  );
 }
+
+.heading-box__detail {}
 
 .heading-box__detail {
     padding: 0.70rem;
@@ -560,7 +563,7 @@ section.section-header {
 .overview-box__icon {
   height: 2.25rem;
   width: 2.25rem;
-  fill: #55c57a;
+  fill: #000fc4;
 }
 .overview-box__label {
   font-weight: 700;
