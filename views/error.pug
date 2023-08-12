@@ -1,9 +1,44 @@
-extends base
 
-block content
-  main.main
-    .error
-      .error__title
-        h2.heading-secondary.heading-secondary--error Uh oh! Something went wrong!   
-        h2.error__emoji 😢 🤯
-      .error__msg= msg
+html
+  head
+    meta(charset="UTF-8")
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css", integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==", crossorigin="anonymous")
+    link(rel="stylesheet", href="/css/tourStyle.css")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="shortcut icon", type="image/png", href="/images/favicon.svg")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Lato:300,300i,700")
+    script(src="https://js.stripe.com/v3/").
+      
+    title Natours | Something went wrong!
+  body
+    // HEADER
+    header.header
+      nav.nav.nav--tours
+        a(class="nav__el", href="/All-Tours", style="font-weight: bold; color: white;") All tours
+      div(class="header__logo")
+        a(href="/", aria-label="Home")
+          img(src="/images/logo.svg", alt="Natours logo")
+    // CONTENT
+    main.main
+      .error
+        div(class="error__title")
+          h2.heading-secondary.heading-secondary--error Uh oh! Something went wrong!
+          h2(class="error__emoji")
+        div(class="error__msg")= msg
+    // FOOTER
+    .footer
+      div(class="footer__logo")
+        img(src="/images/logo-blue.svg", alt="Natours logo")
+      ul(class="footer__nav")
+        li
+          a(href="#") About us        
+        li
+          a(href="#") Download apps     
+        li
+          a(href="#") Become a guide      
+        li
+          a(href="#") Careers            
+        li
+          a(href="#") Contact
+      p(class="footer__copyright") | &copy; by Sajed Tabikh. All rights reserved.
+    script(src="/js/bundle.js")

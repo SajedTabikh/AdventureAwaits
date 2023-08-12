@@ -72,7 +72,7 @@ body {
 
 @media (max-width: 32em) {
   .main {
-    padding: 3rem 1rem;
+    padding: 3rem 0rem;
   }
 }
 
@@ -358,12 +358,12 @@ header.header {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    height: 18rem;
-    padding: 1rem 5rem;
+    height: 13rem;
+    padding: 1rem 1rem;
   }
 }
 .header__logo img {
-  height: 5.5rem;
+  height: 3.5rem;
 }
 @media only screen and (max-width: 62.5em) {
   .header__logo {
@@ -901,6 +901,35 @@ section.section-header {
   }
 }
 
+
+@media (max-width: 52em) {
+  /* Hide the tour images by setting their display property to none */
+  .cta__img--1,
+  .cta__img--2,
+  .cta__img--logo {
+    display: none;
+  }
+
+  /* Adjust the positioning and styles of other elements for better mobile layout */
+  .cta {
+    padding: 8rem 1rem;
+  }
+  
+  .cta__img--logo {
+    transform: translate(-50%, -50%);
+  }
+  
+  .cta__content {
+    grid-template-rows: auto auto auto;
+    grid-gap: 3.5rem;
+    text-align: center;
+  }
+  
+  .span-all-rows {
+    grid-row: -1 / -1;
+  }
+}
+
 .user-view {
   background-color: #fff;
   max-width: 120rem;
@@ -1078,6 +1107,7 @@ section.section-header {
     flex-direction: row !important;
     justify-content: space-around !important;
     width: 100% !important;
+    margin-right: 3rem;
   }
 }
 
@@ -1107,6 +1137,7 @@ section.section-header {
   -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
   text-shadow: 0 0.7rem 1rem black;
+  margin-left: 2rem;
 }
 .nav__el:not(:last-child) {
   margin-right: 3rem;
@@ -1428,6 +1459,28 @@ section.section-header {
   font-weight: 700;
   max-width: 50rem;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .error {
+    top: 40%;
+  }
+
+  .error__title {
+    flex-direction: column;
+    padding: 4rem;
+  }
+
+  .error__emoji {
+    margin: 1rem auto;
+  }
+  .error__msg {
+    font-size: 1.5rem; /* Adjusted font size for smaller screens */
+  }
+  .heading-secondary--error {
+    font-size: 2rem; /* Adjusted font size for smaller screens */
+    margin: -9rem;
+  }
 }
 
 .login-form {
