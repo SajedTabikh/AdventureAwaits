@@ -70,6 +70,7 @@ app.use(
         'ws://127.0.0.1:2747/',
         'ws://127.0.0.1:9758/',
         'ws://127.0.0.1:5214/',
+        'wss://clear-bass-necklace.cyclic.app:5214/',
       ],
       'script-src': [
         "'self'",
@@ -79,6 +80,7 @@ app.use(
         'https://unpkg.com', // Add this line to allow Ionicons script
         'https://kit.fontawesome.com', // Add this line for Font Awesome
         'https://events.mapbox.com',
+        'wss://clear-bass-necklace.cyclic.app:5214/',
       ],
       'worker-src': ["'self'", 'blob:'],
       'img-src': ["'self'", 'data:', 'blob:'],
