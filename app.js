@@ -73,6 +73,7 @@ app.use(
         'wss://clear-bass-necklace.cyclic.app:5214/',
         'ws://127.0.0.1:6833/',
         'ws://127.0.0.1:13464/',
+        'ws://127.0.0.1:8562/',
       ],
       'script-src': [
         "'self'",

@@ -66,3 +66,26 @@ export const forgotPassword = async (email) => {
     showAlert('error', errorMessage);
   }
 };
+export const resetPassword = async (password, passwordConfirm, token) => {
+  try {
+    if (password !== passwordConfirm) {
+      showAlert('error', 'Passwords do not match!');
+      return;
+    }
+    const res = await axios({
+      method: 'PATCH',
+      url: `/api/v1/users/resetPassword/${token}`,
+      data: {
+        password,
+        passwordConfirm,
+      },
+    });
+
+    if (res.data.status === 'success') {
+      showAlert('success', 'Password Reset Successfully');
+    }
+  } catch (error) {
+    const errorMessage = error.response.data.message || 'Something went wrong, please try again!';
+    showAlert('error', errorMessage);
+  }
+};

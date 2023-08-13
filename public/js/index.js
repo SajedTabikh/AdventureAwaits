@@ -1,6 +1,6 @@
 import '@babel/polyfill';
 import { login, logout } from './login';
-import { signup, forgotPassword } from './signup';
+import { signup, forgotPassword, resetPassword } from './signup';
 import { displayMAp } from './mapbox';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
@@ -61,6 +61,19 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const email = document.getElementById('forgotPassword').value;
       forgotPassword(email);
+    });
+  }
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const formElement = document.querySelector('.form--resetPasword');
+
+  if (formElement) {
+    formElement.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const password = document.getElementById('resetPassword').value;
+      const passwordConfirm = document.getElementById('resetPasswordConfirm').value;
+      const token = window.location.pathname.split('/').pop(); // Extract token from URL
+      resetPassword(password, passwordConfirm, token); // Pass the token to your resetPassword function
     });
   }
 });
