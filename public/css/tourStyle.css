@@ -21,7 +21,7 @@ body {
   margin: 0px;
   padding: 0px;
   -webkit-box-sizing: inherit;
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 input,
@@ -29,7 +29,7 @@ textarea,
 button,
 select,
 a {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  /* -webkit-tap-highlight-color: rgba(0,0,0,0); */
 }
 
 html {
@@ -1525,7 +1525,7 @@ section.section-header {
   border: none;
   width: 100%;
   background-color: #fff;
-  background-color: #f2f2f2;
+  background-color: #cecbcb7a;
   border-top: 3px solid transparent;
   border-bottom: 3px solid transparent;
   -webkit-transition: all 0.3s;
@@ -1607,4 +1607,24 @@ section.section-header {
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
+}
+
+.form__input::selection {
+  background-color: #3498db; /* Change this to the color you prefer */
+  color: #fff; /* Change the text color for better visibility */
+}
+
+.form__input::-moz-selection {
+  background-color: #3498db;
+  color: #fff;
+}
+
+::selection {
+  background-color: #3498db; /* Change this to the color you prefer */
+  color: #fff; /* Change the text color for better visibility */
+}
+
+::-moz-selection {
+  background-color: #3498db;
+  color: #fff;
 }

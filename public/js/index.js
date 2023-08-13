@@ -1,6 +1,6 @@
 import '@babel/polyfill';
 import { login, logout } from './login';
-import { signup } from './signup';
+import { signup, forgotPassword } from './signup';
 import { displayMAp } from './mapbox';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
@@ -49,6 +49,18 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('.btnn-primary').textContent = 'Create Account';
 
       signup(name, email, password, passwordConfirm);
+    });
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const formElement = document.querySelector('.form--forgotPasword');
+
+  if (formElement) {
+    formElement.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('forgotPassword').value;
+      forgotPassword(email);
     });
   }
 });

@@ -62,6 +62,12 @@ exports.getSignUpForm = (req, res) => {
   });
 };
 
+exports.getForgotPasswordForm = (req, res) => {
+  res.status(200).render('authentication/forgotPassword', {
+    title: 'Forgot Password',
+  });
+};
+
 exports.getAccount = (req, res) => {
   res.status(200).render('account', {
     title: 'Your Account',

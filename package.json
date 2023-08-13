@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon nodemon -e js,pug,css,jsons server.js",
-    "start:prod": "cross-env NODE_ENV=production nodemon server.js",
+    "start:prod": "cross-env NODE_ENV=production nodemon -e js,pug,css,jsons server.js",
     "debug": "ndb cross-env NODE_ENV=production server.js",
     "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
     "build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
@@ -34,6 +34,7 @@
     "html-to-text": "^9.0.5",
     "ionicons": "^7.1.2",
     "jsonwebtoken": "^9.0.0",
+    "luxon": "^3.4.0",
     "mapbox-gl": "^2.15.0",
     "mongoose": "^7.3.1",
     "morgan": "^1.10.0",

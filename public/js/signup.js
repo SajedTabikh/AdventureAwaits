@@ -42,3 +42,27 @@ export const signup = async (name, email, password, passwordConfirm) => {
     showAlert('error', errorMessage);
   }
 };
+
+export const forgotPassword = async (email) => {
+  try {
+    if (!isEmailValid(email)) {
+      showAlert('error', 'Invalid email address!!!');
+      return;
+    }
+
+    const res = await axios({
+      method: 'POST',
+      url: '/api/v1/users/forgotPassword',
+      data: {
+        email,
+      },
+    });
+
+    if (res.data.status === 'success') {
+      showAlert('success', 'Please check your inbox!!!');
+    }
+  } catch (error) {
+    const errorMessage = error.response.data.message || 'Something went wrong, please try again!';
+    showAlert('error', errorMessage);
+  }
+};

@@ -2,6 +2,7 @@ const crypto = require('crypto'); // Importing the crypto module for generating 
 const mongoose = require('mongoose'); // Importing the mongoose module for creating schema and model
 const validator = require('validator'); // Importing the validator module for data validation
 const bcrypt = require('bcryptjs'); // Importing the bcryptjs module for password hashing
+const { DateTime } = require('luxon');
 
 const userSchema = new mongoose.Schema({
   name: {

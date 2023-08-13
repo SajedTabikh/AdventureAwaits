@@ -66,30 +66,3 @@ block content
 
             .form__group.right
               button.btn.btn--small.btn--green.btn--save-password Save password
-
-    script.
-      const togglePasswordVisibility = (inputId, eyeIconId) => {
-        const input = document.getElementById(inputId);
-        const eyeIcon = document.getElementById(eyeIconId);
-        if (input.type === 'password') {
-          input.type = 'text';
-          eyeIcon.classList.remove('fa-eye');
-          eyeIcon.classList.add('fa-eye-slash');
-        } else {
-          input.type = 'password';
-          eyeIcon.classList.remove('fa-eye-slash');
-          eyeIcon.classList.add('fa-eye');
-        }
-      };
-      
-      document.getElementById('password-current-toggle').addEventListener('click', () => {
-        togglePasswordVisibility('password-current', 'password-current-toggle');
-      });
-
-      document.getElementById('password-toggle').addEventListener('click', () => {
-        togglePasswordVisibility('password', 'password-toggle');
-      });
-
-      document.getElementById('password-confirm-toggle').addEventListener('click', () => {
-        togglePasswordVisibility('password-confirm', 'password-confirm-toggle');
-      });
