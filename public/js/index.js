@@ -53,17 +53,67 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// document.addEventListener('DOMContentLoaded', () => {
+//   const formElement = document.querySelector('.form--forgotPasword');
+
+//   if (formElement) {
+//     formElement.addEventListener('submit', async (e) => {
+//       e.preventDefault();
+//       const email = document.getElementById('forgotPassword').value;
+//       const submitButton = document.querySelector('.btn');
+
+//       submitButton.textContent = 'Sending...';
+
+//       try {
+//         await forgotPassword(email);
+//         submitButton.textContent = 'Done';
+//         setTimeout(() => {
+//           submitButton.textContent = 'Submit';
+//         }, 2000); // Reset after 2 seconds
+//       } catch (error) {
+//         console.error('An error occurred:', error);
+//         submitButton.textContent = 'Submit';
+//       }
+//     });
+//   }
+// });
+
 document.addEventListener('DOMContentLoaded', () => {
   const formElement = document.querySelector('.form--forgotPasword');
+  const messageElement = document.querySelector('.message');
 
   if (formElement) {
-    formElement.addEventListener('submit', (e) => {
+    formElement.addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = document.getElementById('forgotPassword').value;
-      forgotPassword(email);
+      const submitButton = document.querySelector('.btn');
+
+      submitButton.textContent = 'Sending...';
+
+      try {
+        const emailSent = await forgotPassword(email);
+
+        if (emailSent) {
+          submitButton.textContent = 'Done';
+          formElement.classList.add('hide');
+          messageElement.textContent =
+            'Password reset email sent to your inbox. Please check your email.';
+          messageElement.classList.add('success');
+        } else {
+          submitButton.textContent = 'Send';
+        }
+      } catch (error) {
+        console.error('An error occurred:', error);
+        submitButton.textContent = 'Send';
+
+        // Display the error message on the page
+        messageElement.textContent = 'An error occurred. Please try again.';
+        messageElement.classList.add('error');
+      }
     });
   }
 });
+
 document.addEventListener('DOMContentLoaded', () => {
   const formElement = document.querySelector('.form--resetPasword');
 

@@ -47,9 +47,8 @@ export const forgotPassword = async (email) => {
   try {
     if (!isEmailValid(email)) {
       showAlert('error', 'Invalid email address!!!');
-      return;
+      return false; // Return false when the email is not valid
     }
-
     const res = await axios({
       method: 'POST',
       url: '/api/v1/users/forgotPassword',
@@ -60,12 +59,16 @@ export const forgotPassword = async (email) => {
 
     if (res.data.status === 'success') {
       showAlert('success', 'Please check your inbox!!!');
+      return true; // Return true when the email is sent successfully
     }
   } catch (error) {
     const errorMessage = error.response.data.message || 'Something went wrong, please try again!';
     showAlert('error', errorMessage);
   }
+
+  return false; // Return false in case of any error
 };
+
 export const resetPassword = async (password, passwordConfirm, token) => {
   try {
     if (password !== passwordConfirm) {

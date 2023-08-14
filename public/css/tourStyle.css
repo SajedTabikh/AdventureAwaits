@@ -1628,3 +1628,27 @@ section.section-header {
   background-color: #3498db;
   color: #fff;
 }
+
+
+.message {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.form--forgotPasword {
+  display: block;
+}
+
+.form--forgotPasword.hide {
+  display: none;
+}
+
+.btn-resend{
+  margin-top: 21px;
+  width: 101%;
+  background-color: deepskyblue;
+  color: white;
+  padding: 10px;
+  text-transform: uppercase;
+}
