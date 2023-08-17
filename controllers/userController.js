@@ -5,6 +5,10 @@ const factory = require('./handlerFactory');
 const multer = require('multer');
 const sharp = require('sharp');
 
+const nodemailer = require('nodemailer');
+const mongoose = require('mongoose');
+const Email = require('./../utils/email'); // Importing the 'email' class
+
 // const multerStorage = multer.diskStorage({
 //   destination: (req, file, callback) => {
 //     callback(null, 'public/img/users');

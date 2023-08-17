@@ -31,10 +31,14 @@ export const signup = async (name, email, password, passwordConfirm) => {
     });
 
     if (res.data.status === 'success') {
-      showAlert('success', 'Signup Successful. Please login with your credentials.');
+      showAlert(
+        'success',
+        'An email has been sent to your inbox for verification. Please check your email and follow the instructions to activate your account.',
+        5
+      );
       window.setTimeout(() => {
         location.assign('/login');
-      }, 1500);
+      }, 2500);
     }
   } catch (error) {
     const errorMessage =

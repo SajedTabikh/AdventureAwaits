@@ -1,6 +1,6 @@
 import '@babel/polyfill';
 import { login, logout } from './login';
-import { signup, forgotPassword, resetPassword } from './signup';
+import { signup, forgotPassword, resetPassword, verification } from './signup';
 import { displayMAp } from './mapbox';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
@@ -36,47 +36,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const formElement = document.querySelector('.form--signup');
+  const submitButton = document.querySelector('.btnn-primary');
 
   if (formElement) {
-    formElement.addEventListener('submit', (e) => {
+    formElement.addEventListener('submit', async (e) => {
       e.preventDefault();
-      document.querySelector('.btnn-primary').textContent = 'Create Account';
+
+      // Change button text to "Creating..."
+      submitButton.textContent = 'Creating...';
+      submitButton.disabled = true; // Disable the button to prevent multiple submissions
+
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       const passwordConfirm = document.getElementById('passwordConfirm').value;
-      document.querySelector('.btnn-primary').textContent = 'Creating...';
-      document.querySelector('.btnn-primary').textContent = 'Create Account';
 
-      signup(name, email, password, passwordConfirm);
+      try {
+        await signup(name, email, password, passwordConfirm);
+
+        // Signup successful
+        submitButton.textContent = 'Create Account';
+        submitButton.disabled = false; // Enable the button
+
+        // You can redirect or display a success message here
+      } catch (error) {
+        // Signup failed
+        submitButton.textContent = 'Create Account';
+        submitButton.disabled = false; // Enable the button
+
+        // Handle the error (e.g., display an error message)
+        console.error('Error:', error);
+      }
     });
   }
 });
-
-// document.addEventListener('DOMContentLoaded', () => {
-//   const formElement = document.querySelector('.form--forgotPasword');
-
-//   if (formElement) {
-//     formElement.addEventListener('submit', async (e) => {
-//       e.preventDefault();
-//       const email = document.getElementById('forgotPassword').value;
-//       const submitButton = document.querySelector('.btn');
-
-//       submitButton.textContent = 'Sending...';
-
-//       try {
-//         await forgotPassword(email);
-//         submitButton.textContent = 'Done';
-//         setTimeout(() => {
-//           submitButton.textContent = 'Submit';
-//         }, 2000); // Reset after 2 seconds
-//       } catch (error) {
-//         console.error('An error occurred:', error);
-//         submitButton.textContent = 'Submit';
-//       }
-//     });
-//   }
-// });
 
 document.addEventListener('DOMContentLoaded', () => {
   const formElement = document.querySelector('.form--forgotPasword');

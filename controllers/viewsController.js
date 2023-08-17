@@ -74,6 +74,12 @@ exports.getResetForm = (req, res) => {
   });
 };
 
+exports.getVerificationForm = (req, res) => {
+  res.status(200).render('authentication/verifyEmail', {
+    title: 'Verification',
+  });
+};
+
 exports.getAccount = (req, res) => {
   res.status(200).render('account', {
     title: 'Your Account',

@@ -60,6 +60,9 @@ module.exports = class Email {
   async sendWelcome() {
     await this.send('Welcome', 'Welcome to the Natours Family!');
   }
+  async sendVerification() {
+    await this.send('verifyEmail', 'Verification Link!!');
+  }
 
   async sendPasswordReset() {
     await this.send('passwordReset', 'Your password reset token (Valid for only 10 min)');

@@ -1,10 +1,12 @@
 const crypto = require('crypto');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken'); // Importing the 'jsonwebtoken' library.
-const User = require('./../models/userModel'); // Importing the user model.
 const catchAsync = require('./../utils/catchAsync'); // Importing the 'catchAsync' utility function.
 const AppError = require('./../utils/AppError'); // Importing the 'AppError' class.
+
 const Email = require('./../utils/email'); // Importing the 'email' class
+const User = require('./../models/userModel'); // Importing the user model.
+const Token = require('../models/token');
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
@@ -57,33 +59,64 @@ const createSendToken = (user, statusCode, req, res) => {
 exports.signup = catchAsync(async (req, res, next) => {
   const { name, email, password, passwordConfirm, role } = req.body; // Retrieve the name value from req.body
 
-  // Check if the email already exists in the database
-  const existingUser = await User.findOne({ email });
+  let existingUser = await User.findOne({ email: req.body.email });
   if (existingUser) {
     return next(new AppError('Email already exists. Please use a different email.', 400));
   }
 
-  const newUser = {
+  newUser = await new User({
     name,
     email,
     password,
     passwordConfirm,
-    role: role || 'user', // Set the role to 'user' if not provided
-  };
+    role: role || 'user',
+  }).save();
 
   newUser.passwordChangeAt = req.body.passwordChangeAt;
-  const createdUser = await User.create(newUser);
 
-  const url = `${req.protocol}://${req.get('host')}/me`;
-  await new Email(newUser, url).sendWelcome();
+  let token = await new Token({
+    userId: newUser._id,
+    token: crypto.randomBytes(32).toString('hex'),
+    expiresAt: new Date(Date.now() + 3 * 60 * 60 * 1000 + 1800000), // Replace yourTokenExpirationDuration with the desired duration in milliseconds
+  }).save();
 
-  res.status(200).json({
+  const url = `${req.protocol}://${req.get('host')}/verifying/${newUser.id}/${token.token}`;
+  await new Email(newUser, url).sendVerification();
+
+  res.status(201).json({
     status: 'success',
-    message: 'Signup Successful. Please login with your credentials.',
-    data: {
-      user: createdUser,
-    },
+    message: 'An Email sent to your account please verify',
   });
+});
+
+exports.verify = catchAsync(async (req, res, next) => {
+  const user = await User.findOne({ _id: req.params.id }).select('+passwordConfirm');
+  if (!user) return next(new AppError('User does not Exist !!!', 404));
+
+  const token = await Token.findOne({
+    userId: user._id,
+    token: req.params.token,
+    expiresAt: { $gt: Date.now() }, // Check if the token's expiration time is greater than the current time
+  });
+  if (!token) return next(new AppError('Token is invalid or has expired', 400));
+
+  // Update the 'verified' field of the user
+  user.verified = true;
+  await user.save();
+
+  // Remove the used token
+  await Token.findByIdAndRemove(token._id);
+
+  return res.render('authentication/verifyEmail');
+  next();
+
+  // res.status(200).send({
+  //   status: 'success',
+  //   message: 'Account Verified',
+  //   data: {
+  //     user,
+  //   },
+  // });
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -97,6 +130,10 @@ exports.login = catchAsync(async (req, res, next) => {
 
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new AppError('Incorrect Email or Password', 401));
+  }
+
+  if (!user.verified) {
+    return next(new AppError('Please verify your account before logging in.', 403));
   }
 
   createSendToken(user, 200, req, res);
@@ -199,9 +236,6 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   // 3) Send it to the user's email
   try {
     const resetURL = `${req.protocol}://${req.get('host')}/resetPassword/${resetToken}`;
-    // const resetURL = `${req.protocol}://${req.get(
-    //   'host'
-    // )}/api/v1/users/resetPassword/${resetToken}`;
     await new Email(user, resetURL).sendPasswordReset();
 
     res.status(200).json({

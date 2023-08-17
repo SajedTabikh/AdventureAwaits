@@ -3,6 +3,7 @@ const mongoose = require('mongoose'); // Importing the mongoose module for creat
 const validator = require('validator'); // Importing the validator module for data validation
 const bcrypt = require('bcryptjs'); // Importing the bcryptjs module for password hashing
 const { DateTime } = require('luxon');
+const Joi = require('joi');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -53,6 +54,11 @@ const userSchema = new mongoose.Schema({
     default: true, // User is active by default
     select: false, // Active status should not be selected by default in query results
   },
+
+  verified: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 userSchema.pre('save', async function (next) {
@@ -62,7 +68,7 @@ userSchema.pre('save', async function (next) {
 
   const now = new Date();
   const offset = now.getTimezoneOffset() * 60000;
-  this.passwordChangeAt = new Date(now - offset - 1000); // Set the password change date
+  this.passwordChangedAt = new Date(now - offset - 1000); // Set the password change date
 
   this.passwordConfirm = undefined; // Clear the password confirmation field
   next();
@@ -100,9 +106,10 @@ userSchema.methods.createPasswordResetToken = function () {
 };
 
 userSchema.pre(/^find/, function (next) {
-  this.find().select('-passwordChangedAt'); // Exclude passwordChangedAt field from find queries
+  this.find().select('-passwordChangedAt -passwordConfirm'); // Exclude passwordChangedAt and passwordConfirm fields from find queries
   next();
 });
 
 const User = mongoose.model('User', userSchema); // Create User model using userSchema
+
 module.exports = User; // Export the User model
