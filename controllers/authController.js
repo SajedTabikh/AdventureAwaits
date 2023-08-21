@@ -8,6 +8,8 @@ const Email = require('./../utils/email'); // Importing the 'email' class
 const User = require('./../models/userModel'); // Importing the user model.
 const Token = require('../models/token');
 
+const speakeasy = require('speakeasy');
+
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
 };
@@ -56,39 +58,6 @@ const createSendToken = (user, statusCode, req, res) => {
   });
 };
 
-exports.signup = catchAsync(async (req, res, next) => {
-  const { name, email, password, passwordConfirm, role } = req.body; // Retrieve the name value from req.body
-
-  let existingUser = await User.findOne({ email: req.body.email });
-  if (existingUser) {
-    return next(new AppError('Email already exists. Please use a different email.', 400));
-  }
-
-  newUser = await new User({
-    name,
-    email,
-    password,
-    passwordConfirm,
-    role: role || 'user',
-  }).save();
-
-  newUser.passwordChangeAt = req.body.passwordChangeAt;
-
-  let token = await new Token({
-    userId: newUser._id,
-    token: crypto.randomBytes(32).toString('hex'),
-    expiresAt: new Date(Date.now() + 3 * 60 * 60 * 1000 + 1800000), // Replace yourTokenExpirationDuration with the desired duration in milliseconds
-  }).save();
-
-  const url = `${req.protocol}://${req.get('host')}/verifying/${newUser.id}/${token.token}`;
-  await new Email(newUser, url).sendVerification();
-
-  res.status(201).json({
-    status: 'success',
-    message: 'An Email sent to your account please verify',
-  });
-});
-
 exports.verify = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ _id: req.params.id }).select('+passwordConfirm');
   if (!user) return next(new AppError('User does not Exist !!!', 404));
@@ -109,34 +78,6 @@ exports.verify = catchAsync(async (req, res, next) => {
 
   return res.render('authentication/verifyEmail');
   next();
-
-  // res.status(200).send({
-  //   status: 'success',
-  //   message: 'Account Verified',
-  //   data: {
-  //     user,
-  //   },
-  // });
-});
-
-exports.login = catchAsync(async (req, res, next) => {
-  const { email, password } = req.body;
-
-  if (!email || !password) {
-    return next(new AppError('Please provide email and password!', 400));
-  }
-
-  const user = await User.findOne({ email }).select('+password');
-
-  if (!user || !(await user.correctPassword(password, user.password))) {
-    return next(new AppError('Incorrect Email or Password', 401));
-  }
-
-  if (!user.verified) {
-    return next(new AppError('Please verify your account before logging in.', 403));
-  }
-
-  createSendToken(user, 200, req, res);
 });
 
 exports.logout = (req, res) => {
@@ -297,4 +238,219 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
   // 4) Send the response with the updated token
   createSendToken(user, 200, req, res);
+});
+
+exports.signup = catchAsync(async (req, res, next) => {
+  const { name, email, password, passwordConfirm, role } = req.body; // Retrieve the name value from req.body
+
+  let existingUser = await User.findOne({ email: req.body.email });
+  if (existingUser) {
+    return next(new AppError('Email already exists. Please use a different email.', 400));
+  }
+
+  const newUser = await new User({
+    name,
+    email,
+    password,
+    passwordConfirm,
+    role: role || 'user',
+  }).save();
+
+  newUser.passwordChangeAt = req.body.passwordChangeAt;
+
+  const token = new Token({
+    userId: newUser._id,
+    token: crypto.randomBytes(32).toString('hex'),
+    expiresAt: new Date(Date.now() + 3 * 60 * 60 * 1000 + 1800000),
+  });
+
+  await token.save();
+
+  const url = `${req.protocol}://${req.get('host')}/verifying/${newUser.id}/${token.token}`;
+  await new Email(newUser, url).sendVerification();
+
+  res.status(201).json({
+    status: 'success',
+    message: 'Registered successfully, An Email sent to your account please verify',
+  });
+});
+
+exports.verify = catchAsync(async (req, res, next) => {
+  const user = await User.findOne({ _id: req.params.id }).select('+passwordConfirm');
+  if (!user) return next(new AppError('User does not Exist !!!', 404));
+
+  const token = await Token.findOne({
+    userId: user._id,
+    token: req.params.token,
+    expiresAt: { $gt: Date.now() }, // Check if the token's expiration time is greater than the current time
+  });
+  if (!token) return next(new AppError('Token is invalid or has expired', 400));
+
+  // Update the 'verified' field of the user
+  user.verified = true;
+  await user.save();
+
+  // Remove the used token
+  await Token.findByIdAndRemove(token._id);
+
+  return res.render('authentication/verifyEmail');
+  next();
+});
+
+exports.login = catchAsync(async (req, res, next) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return next(new AppError('Please provide email and password!', 400));
+  }
+
+  const user = await User.findOne({ email }).select('+password');
+
+  if (!user || !(await user.correctPassword(password, user.password))) {
+    return next(new AppError('Incorrect Email or Password', 401));
+  }
+
+  if (!user.verified) {
+    return next(new AppError('Please verify your account before logging in.', 403));
+  }
+  if (user.otp_enabled && !user.otp_valid) {
+    return next(new AppError('Please verify your OTP account before logging in.', 402));
+  }
+
+  createSendToken(user, 200, req, res);
+});
+
+exports.GenerateOTP = catchAsync(async (req, res) => {
+  const { user_id } = req.body;
+
+  const user = await User.findById(user_id);
+
+  if (!user) {
+    return res.status(404).json({
+      status: 'fail',
+      message: 'No user with that email exists',
+    });
+  }
+
+  const otp_secret = speakeasy.generateSecret({ length: 20 }); // Generate OTP secret
+  const otp_auth_url = speakeasy.otpauthURL({
+    secret: otp_secret.ascii,
+    label: 'CodevoWeb',
+    issuer: 'codevoweb.com',
+    encoding: 'base32',
+  });
+
+  user.otp_ascii = otp_secret.ascii;
+  user.otp_hex = otp_secret.hex;
+  user.otp_base32 = otp_secret.base32;
+  user.otp_auth_url = otp_auth_url;
+
+  await user.save();
+
+  res.status(200).json({
+    base32: otp_secret.base32,
+    otp_auth_url,
+  });
+});
+
+exports.VerifyOTP = catchAsync(async (req, res) => {
+  const { user_id, token } = req.body;
+
+  const message = "Token is invalid or user doesn't exists";
+  const user = await User.findById(user_id);
+  console.log(user);
+  if (!user) {
+    return res.status(401).json({
+      status: 'fail',
+      message,
+    });
+  }
+
+  const verified = speakeasy.totp.verify({
+    secret: user.otp_base32,
+    encoding: 'base32',
+    token,
+  });
+  console.log(verified);
+
+  if (!verified) {
+    return res.status(401).json({
+      status: 'fail',
+      message,
+    });
+  }
+
+  user.otp_enabled = true;
+  user.otp_verified = true;
+  await user.save();
+
+  res.status(200).json({
+    otp_verified: true,
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      otp_enabled: user.otp_enabled,
+    },
+  });
+});
+
+exports.ValidateOTP = catchAsync(async (req, res, next) => {
+  const { user_id, token } = req.body;
+
+  const user = await User.findById(user_id);
+
+  const message = "Token is invalid or user doesn't exist";
+  if (!user) {
+    return res.status(401).json({
+      status: 'fail',
+      message,
+    });
+  }
+
+  const verified = speakeasy.totp.verify({
+    secret: user.otp_base32,
+    encoding: 'base32',
+    token,
+    window: 1,
+  });
+
+  if (!verified) {
+    return res.status(401).json({
+      status: 'fail',
+      message,
+    });
+  } else {
+    user.otp_valid = true;
+    await user.save();
+  }
+  res.status(200).json({
+    data: {
+      user,
+    },
+  });
+});
+
+exports.DisableOTP = catchAsync(async (req, res) => {
+  const { user_id } = req.body;
+
+  const user = await User.findById(user_id);
+  if (!user) {
+    return res.status(401).json({
+      status: 'fail',
+      message: "User doesn't exist",
+    });
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(user_id, { otp_enabled: false }, { new: true });
+
+  res.status(200).json({
+    otp_disabled: true,
+    user: {
+      id: updatedUser.id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      otp_enabled: updatedUser.otp_enabled,
+    },
+  });
 });

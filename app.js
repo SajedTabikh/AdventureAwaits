@@ -52,30 +52,6 @@ app.use(
         'https://api.mapbox.com',
         'https://events.mapbox.com',
         'https://unpkg.com', // Add this line to allow Ionicons script
-        'wss://clear-bass-necklace.cyclic.app:5214/',
-        'ws://127.0.0.1:4760/',
-        'ws://127.0.0.1:4174/',
-        'ws://127.0.0.1:13829/',
-        'ws://127.0.0.1:9964/',
-        'ws://127.0.0.1:6589/',
-        'ws://127.0.0.1:13504/',
-        'ws://127.0.0.1:9352/', // Add this line to allow connections to 'ws://127.0.0.1:9352/'
-        'ws://127.0.0.1:14864/', // Add this line to allow connections to 'ws://127.0.0.1:14864/'
-        'ws://127.0.0.1:6341/',
-        'ws://127.0.0.1:9061/',
-        'ws://127.0.0.1:7700/',
-        'ws://127.0.0.1:6705/',
-        'ws://127.0.0.1:5778/',
-        'ws://127.0.0.1:6919/',
-        'ws://127.0.0.1:2747/',
-        'ws://127.0.0.1:9758/',
-        'ws://127.0.0.1:5214/',
-        'wss://clear-bass-necklace.cyclic.app:5214/',
-        'ws://127.0.0.1:6833/',
-        'ws://127.0.0.1:13464/',
-        'ws://127.0.0.1:8562/',
-        'ws://127.0.0.1:4671/',
-        'ws://127.0.0.1:13419/',
       ],
       'script-src': [
         "'self'",
@@ -85,7 +61,6 @@ app.use(
         'https://unpkg.com', // Add this line to allow Ionicons script
         'https://kit.fontawesome.com', // Add this line for Font Awesome
         'https://events.mapbox.com',
-        'wss://clear-bass-necklace.cyclic.app:5214/',
       ],
       'worker-src': ["'self'", 'blob:'],
       'img-src': ["'self'", 'data:', 'blob:'],

@@ -56,6 +56,11 @@ exports.getLoginForm = (req, res) => {
     title: 'Log into your account',
   });
 };
+
+exports.getValidateForm = (req, res) => {
+  res.status(200).render('otp/index');
+};
+
 exports.getSignUpForm = (req, res) => {
   res.status(200).render('authentication/signup', {
     title: 'Create new Account',

@@ -1,0 +1,22 @@
+html
+	head
+		meta(charset="UTF-8")
+		link(rel="stylesheet", href="/css/otpAfterLogin.css")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		link(rel="shortcut icon", href="/images/favicon.svg", type="image/svg+xml")
+		title Two-Factor Verification Page
+	body
+		form.form
+			.info
+				span.title Two-Factor Verification
+				p.description Enter the two-factor authentication code provided by the authenticator app 
+			.input-fields.otp-input
+				input(placeholder='', type='tel', maxlength='1')
+				input(placeholder='', type='tel', maxlength='1')
+				input(placeholder='', type='tel', maxlength='1')
+				input(placeholder='', type='tel', maxlength='1')
+				input(placeholder='', type='tel', maxlength='1')
+				input(placeholder='', type='tel', maxlength='1')
+			.action-btns.validate--form
+				a.verify(href='/validate') Verify
+		script(src="/js/bundle.js")             

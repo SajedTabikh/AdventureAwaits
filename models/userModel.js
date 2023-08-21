@@ -3,7 +3,6 @@ const mongoose = require('mongoose'); // Importing the mongoose module for creat
 const validator = require('validator'); // Importing the validator module for data validation
 const bcrypt = require('bcryptjs'); // Importing the bcryptjs module for password hashing
 const { DateTime } = require('luxon');
-const Joi = require('joi');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -59,6 +58,15 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+
+  otp_valid: { type: Boolean, default: false },
+
+  otp_enabled: { type: Boolean, default: false },
+  otp_verified: { type: Boolean, default: false },
+  otp_ascii: String,
+  otp_hex: String,
+  otp_base32: String,
+  otp_auth_url: String,
 });
 
 userSchema.pre('save', async function (next) {

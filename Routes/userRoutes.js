@@ -5,13 +5,18 @@ const authController = require('./../controllers/authController');
 const router = express.Router();
 
 router.post('/signup', authController.signup);
+router.get('/verifying/:id/:token', authController.verify);
+
 router.post('/login', authController.login);
 router.get('/logout', authController.logout);
+
 router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword/:token', authController.resetPassword);
 
-router.post('/signupp', authController.signup);
-router.get('/verifying/:id/:token', authController.verify);
+router.post('/verify', authController.VerifyOTP);
+router.post('/generate', authController.GenerateOTP);
+router.post('/validate', authController.ValidateOTP);
+router.post('/disable', authController.DisableOTP);
 
 router.use(authController.protect); // Apply the protect middleware to all routes below this line
 router.patch('/updateMyPassword', authController.updatePassword);
