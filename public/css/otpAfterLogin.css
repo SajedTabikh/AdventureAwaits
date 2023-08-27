@@ -1,26 +1,35 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: var(--ch-white);
+}
+
 .form {
-    --black: #000000;
-    --ch-black: #141414;
-    --eer-black: #1b1b1b;
-    --night-rider: #2e2e2e;
-    --white: #ffffff;
-    --af-white: #f3f3f3;
-    --ch-white: #e1e1e1;
-    --tomato: #fa5656;
-    font-family: Helvetica, sans-serif;
-    border: 2px solid var(--glow-color);
-    padding: 25px;
-    display: flex;
-    max-width: 420px;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
-    color: var(--night-rider);
-    background-color: var(--white);
-    border-radius: 8px;
-    position: relative;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, .15);
-  }
+  --black: #000000;
+  --ch-black: #141414;
+  --eer-black: #1b1b1b;
+  --night-rider: #2e2e2e;
+  --white: #ffffff;
+  --af-white: #f3f3f3;
+  --ch-white: #e1e1e1;
+  --tomato: #fa5656;
+  font-family: Helvetica, sans-serif;
+  border: 2px solid var(--glow-color);
+  padding: 25px;
+  display: flex;
+  max-width: 420px;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  color: var(--night-rider);
+  background-color: var(--white);
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15);
+}
   
   /*----heading and description-----*/
   
@@ -42,17 +51,25 @@
     font-size: 1rem;
   }
   
-  /*----input-fields------*/
-  
+
+
   .form .input-fields {
     display: flex;
-    justify-content: space-between;
-    gap: 10px;
+    flex-direction: column; /* Change to column layout */
+    align-items: center;
+    gap: 10px; /* Add gap between inputs */
+  }
+  
+  .form .input-fields input#email {
+    width: 114%; /* Set the width for the email input */
+  }
+  
+  .form .input-fields input#otp {
+    width: 50%; /* Set the width for the OTP input */
   }
   
   .form .input-fields input {
     height: 2.5em;
-    width: 2.5em;
     outline: none;
     text-align: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -69,6 +86,7 @@
     transform: scale(1.05);
     transition: 0.5s;
   }
+
   
   /*-----verify and clear buttons-----*/
   
@@ -79,10 +97,10 @@
   }
   
   .verify {
-    padding: 10px 20px;
+    padding: 12px 20px;
     text-decoration: none;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 500;
     color: var(--white);
     text-shadow: none;
@@ -139,4 +157,28 @@
   .close:hover {
     background-color: var(--tomato);
     color: var(--white);
+  }
+
+  .alert {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 9999;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 350;
+    text-align: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 1rem 8rem; /* Adjusted padding */
+    -webkit-box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.25); /* Adjusted box shadow */
+  }
+  .alert--success {
+    background-color: #20bf6b;
+  }
+  .alert--error {
+    background-color: #eb4d4b;
   }

@@ -1,0 +1,41 @@
+extends base
+
+mixin navItem(link, text, icon, active)
+  li(class= `${active ? 'side-nav--active' : ''}`)
+    a(href=`${link}`)
+      svg
+        use(xlink:href=`img/icons.svg#icon-${icon}`)
+      | #{text}
+
+block content
+  main.main
+    .user-view
+      nav.user-view__menu
+        ul.side-nav
+          +navItem('/me', 'Settings', 'settings')
+          +navItem('/my-tours', 'My bookings', 'briefcase')
+          +navItem('#', 'My reviews', 'star')
+          +navItem('/generate', user.otp_enabled ? 'Disable 2FA Setup' : 'Enable 2FA Setup', 'credit-card', true)  // Updated line
+        - if (user.role === 'admin')          
+          .admin-nav
+            h5.admin-nav__heading Admin
+            ul.side-nav
+              +navItem('#', 'Manage tours', 'map')
+              +navItem('#', 'Manage users', 'users')
+              +navItem('#', 'Manage reviews', 'star')
+              +navItem('#', 'Manage Bookings', 'briefcase')
+
+      .user-view__content
+        //- Add this container for 2FA setup
+        .user-view__form-container
+          h2.heading-secondary.ma-bt-md #{user.otp_enabled ? 'Disable' : 'Enable'} 2FA Setup
+          .qr-code
+            img#qr-code-image(src=user.qrCodeImage, alt="QR Code")
+          p.form__label
+            | Secret Key: #{user.otp_base32}  
+          form.form.form-2fa-setup
+            .form__group
+              label.form__label OTP
+              input#otp.form__input(type='text', placeholder='Enter OTP', required)
+            .form__group.right
+              button#verify.btn.btn--small.btn--green.btn--verify-otp #{user.otp_enabled ? 'Disable' : 'Enable'} 2Fa

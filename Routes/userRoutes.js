@@ -8,15 +8,16 @@ router.post('/signup', authController.signup);
 router.get('/verifying/:id/:token', authController.verify);
 
 router.post('/login', authController.login);
-router.get('/logout', authController.logout);
+router.get('/logout', authController.protect, authController.logout);
 
 router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword/:token', authController.resetPassword);
 
-router.post('/verify', authController.VerifyOTP);
-router.post('/generate', authController.GenerateOTP);
+router.post('/verify', authController.protect, authController.VerifyOTP);
+// router.post('/generate', authController.protect, authController.GenerateOTP);
 router.post('/validate', authController.ValidateOTP);
-router.post('/disable', authController.DisableOTP);
+router.post('/disable', authController.protect, authController.DisableOTP);
+router.get('/check-2fa-status', authController.protect, authController.check2FAStatus);
 
 router.use(authController.protect); // Apply the protect middleware to all routes below this line
 router.patch('/updateMyPassword', authController.updatePassword);

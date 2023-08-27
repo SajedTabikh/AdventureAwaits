@@ -67,6 +67,7 @@ const userSchema = new mongoose.Schema({
   otp_hex: String,
   otp_base32: String,
   otp_auth_url: String,
+  qrCodeImage: String,
 });
 
 userSchema.pre('save', async function (next) {

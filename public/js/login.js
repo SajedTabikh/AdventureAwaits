@@ -5,7 +5,7 @@ export const login = async (email, password) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: '/api/v1/users/login ',
+      url: '/api/v1/users/login',
       data: {
         email,
         password,
@@ -17,15 +17,20 @@ export const login = async (email, password) => {
       window.setTimeout(() => {
         location.assign('/All-Tours');
       }, 2000);
-    } else if (res.status === 402) {
-      window.setTimeout(() => {
-        location.assign('/Validate');
-      }, 2000);
     }
   } catch (error) {
     console.log(error);
 
-    showAlert('error', error.response.data.message);
+    const errorMessage = error.response.data.message;
+
+    if (errorMessage.includes('Please verify your OTP account before logging in')) {
+      showAlert('success', errorMessage);
+      window.setTimeout(() => {
+        location.assign('/Validate');
+      }, 2500);
+    } else {
+      showAlert('error', errorMessage);
+    }
   }
 };
 
@@ -35,6 +40,7 @@ export const logout = async () => {
       method: 'GET',
       url: '/api/v1/users/logout',
     });
+
     if (res.data.status === 'success') {
       showAlert('success', 'Logged out Successfully');
       window.setTimeout(() => {
@@ -42,44 +48,50 @@ export const logout = async () => {
       }, 1500);
     }
   } catch (error) {
+    console.log('error: ', error);
     showAlert('error', 'Error logging out, try again');
   }
 };
 
-// export const validateOTP = async (otpDigits) => {
+export const validateOTP = async (email, token) => {
+  try {
+    const res = await axios({
+      method: 'POST',
+      url: '/api/v1/users/validate',
+      data: {
+        email,
+        token,
+      },
+    });
+
+    if (res.data.status === 'success') {
+      showAlert('success', 'OTP validated successfully');
+      window.setTimeout(() => {
+        location.assign('/All-Tours');
+      }, 1500);
+    }
+  } catch (error) {
+    showAlert('error', error.response.data.message);
+  }
+};
+
+// export const VerifyOTP = async (otp) => {
 //   try {
-//     const res = await axios.post('/validate', {
-//       otp_digits: otpDigits, // Pass the OTP digits entered by the user
+//     const response = await fetch('/api/v1/users/verify', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(otp),
 //     });
 
-//     if (res.data.otp_valid) {
-//       showAlert('success', 'OTP is valid!');
+//     if (response.data.status === 'success') {
+//       showAlert('success', 'OTP Verified successfully');
 //       window.setTimeout(() => {
-//         location.assign('/All-Tours'); // Redirect to the desired page after successful OTP validation
-//       }, 2000);
+//         location.assign('/login');
+//       }, 1500);
 //     }
 //   } catch (error) {
-//     console.log(error);
-//     showAlert('error', 'Invalid OTP. Please try again.');
+//     showAlert('error', error.response.data.message);
 //   }
 // };
-
-// // Add event listener to the "Verify" button
-// document.addEventListener('DOMContentLoaded', () => {
-//   const verifyBtn = document.querySelector('.validate--form');
-
-//   if (verifyBtn) {
-//     verifyBtn.addEventListener('click', (e) => {
-//       e.preventDefault();
-//       const otpDigits = Array.from(document.querySelectorAll('.input-fields input'))
-//         .map((input) => input.value)
-//         .join('');
-
-//       if (otpDigits.length === 6) {
-//         validateOTP(otpDigits);
-//       } else {
-//         showAlert('error', 'Please enter a valid 6-digit OTP.');
-//       }
-//     });
-//   }
-// });

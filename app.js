@@ -52,6 +52,10 @@ app.use(
         'https://api.mapbox.com',
         'https://events.mapbox.com',
         'https://unpkg.com', // Add this line to allow Ionicons script
+        'ws://127.0.0.1:11411/',
+        'ws://127.0.0.1:3768/',
+        'ws://127.0.0.1:12030/',
+        'ws://127.0.0.1:13188/',
       ],
       'script-src': [
         "'self'",

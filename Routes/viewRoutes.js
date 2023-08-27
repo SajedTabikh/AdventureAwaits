@@ -19,7 +19,12 @@ router.get('/signup', viewsController.getSignUpForm);
 router.get('/verifying/:id/:token', authController.verify);
 
 // router.get('/verify', );
-// router.get('/generate', );
+router.get(
+  '/generate',
+  authController.isLoggedIn,
+  authController.protect,
+  viewsController.getGeneratedOTPForm
+);
 router.get('/validate', viewsController.getValidateForm);
 // router.get('/disable', );
 

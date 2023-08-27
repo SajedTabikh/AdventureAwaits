@@ -1,6 +1,6 @@
 import '@babel/polyfill';
-import { login, logout } from './login';
-import { signup, forgotPassword, resetPassword, verification } from './signup';
+import { login, logout, validateOTP, VerifyOTP } from './login';
+import { signup, forgotPassword, resetPassword } from './signup';
 import { displayMAp } from './mapbox';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
@@ -31,6 +31,98 @@ document.addEventListener('DOMContentLoaded', () => {
       const password = document.getElementById('password').value;
       login(email, password);
     });
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const validateBtn = document.getElementById('validateBtn');
+
+  // Check if the form element exists before adding the event listener
+  if (validateBtn) {
+    validateBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const token = document.getElementById('otp').value;
+      await validateOTP(email, token);
+    });
+  }
+});
+// Add this JavaScript code to verify-otp.js
+document.addEventListener('DOMContentLoaded', async () => {
+  const verifyButton = document.getElementById('verify');
+  const otpInput = document.getElementById('otp');
+
+  // Check user's 2FA status
+  try {
+    const statusResponse = await fetch('/api/v1/users/check-2fa-status');
+    const statusData = await statusResponse.json();
+
+    if (statusData.status === 'enabled') {
+      // 2FA is already enabled, change the button text and action
+      verifyButton.addEventListener('click', async (event) => {
+        event.preventDefault();
+
+        const otp = otpInput.value;
+
+        try {
+          const response = await fetch('/api/v1/users/disable', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ token: otp }),
+          });
+
+          const data = await response.json();
+          if (data.status === 'success') {
+            // 2FA disable successful
+            showAlert('success', '2FA disabled successfully');
+            window.setTimeout(() => {
+              location.assign('/login');
+            }, 2000);
+            // Perform any necessary UI updates
+          } else {
+            showAlert('error', 'Failed to disable 2FA');
+          }
+        } catch (error) {
+          showAlert('error', 'Error disabling 2FA. Please try again.');
+        }
+      });
+    } else {
+      // 2FA is not enabled, keep the button functionality for enabling 2FA
+      verifyButton.addEventListener('click', async (event) => {
+        event.preventDefault();
+
+        const otp = otpInput.value;
+
+        try {
+          const response = await fetch('/api/v1/users/verify', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ token: otp }),
+          });
+
+          const data = await response.json();
+
+          if (data.status === 'success') {
+            // OTP verification successful, enable 2FA
+            showAlert('success', 'OTP verification successful');
+            window.setTimeout(() => {
+              location.assign('/login');
+            }, 2000);
+            // Perform any necessary UI updates
+          } else {
+            showAlert('error', 'OTP verification failed');
+          }
+        } catch (error) {
+          showAlert('error', 'Error verifying OTP. Please try again.');
+        }
+      });
+    }
+  } catch (error) {
+    console.error('Error fetching 2FA status:', error);
   }
 });
 
@@ -125,13 +217,21 @@ if (logOutBtn) {
   logOutBtn.addEventListener('click', logout);
 }
 
-if (userDataForm) {
-  userDataForm.addEventListener('submit', (e) => {
+const saveButton = document.querySelector('.btn--green');
+
+if (userDataForm && saveButton) {
+  userDataForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // Disable the save button and change its text to "Saving..."
+    saveButton.textContent = 'Saving...';
+    saveButton.disabled = true;
+
     const form = new FormData();
     form.append('name', document.getElementById('name').value);
     form.append('email', document.getElementById('email').value);
     form.append('photo', document.getElementById('photo').files[0]);
+
     updateSettings(form, 'data');
   });
 }

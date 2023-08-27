@@ -60,6 +60,11 @@ exports.getLoginForm = (req, res) => {
 exports.getValidateForm = (req, res) => {
   res.status(200).render('otp/index');
 };
+exports.getGeneratedOTPForm = catchAsync(async (req, res) => {
+  // Retrieve the current user from the database
+  const user = await User.findById(res.locals.user);
+  res.status(200).render('otp/qrcodeGenerated', { title: '2FA Setup', user });
+});
 
 exports.getSignUpForm = (req, res) => {
   res.status(200).render('authentication/signup', {
